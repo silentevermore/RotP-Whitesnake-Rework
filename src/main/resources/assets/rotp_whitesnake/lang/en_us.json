@@ -1,0 +1,19 @@
+{
+  "entity.rotp_whitesnake.whitesnake": "Whitesnake",
+  "stand.rotp_whitesnake.whitesnake": "Whitesnake",
+
+  "action.rotp_whitesnake.whitesnake_punch": "Punch",
+  "action.rotp_whitesnake.whitesnake_heavy_punch": "Heavy Punch",
+  "action.rotp_whitesnake.whitesnake_combo_punch": "Finisher Punch",
+  "action.rotp_whitesnake.whitesnake_barrage": "Punch Barrage",
+
+  "action.rotp_whitesnake.whitesnake_block": "Block",
+  "action.rotp_whitesnake.whitesnake_remove_stand_disc": "Eject/Insert Stand Disc",
+  "action.rotp_whitesnake.whitesnake_insert_stand_disc": "Insert Stand Disc",
+  "action.rotp_whitesnake.melt_your_heart": "Melt Your Heart",
+  "action.rotp_whitesnake.blindness": "Lose Sight",
+  "action.rotp_whitesnake.blindness_disable": "Restore Sight",
+  "action.rotp_whitesnake.removing_the_memory_disk": "Eject Memory Disc",
+
+  "rotp_whitesnake.subtitle.whitesnake_name": "\"Whitesnake\""
+}

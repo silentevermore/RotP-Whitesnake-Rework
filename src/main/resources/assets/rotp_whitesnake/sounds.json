@@ -1,0 +1,26 @@
+{
+  "pucci_whitesnake": {
+    "sounds": [ "rotp_whitesnake:stand_user/pucci_whitesnake",
+      "rotp_whitesnake:stand_user/pucci_whitesnake_2",
+      "rotp_whitesnake:stand_user/pucci_whitesnake_3",
+      "rotp_whitesnake:stand_user/pucci_whitesnake_4" ]
+  },
+  "whitesnake_remove_disc": {
+    "sounds": ["rotp_whitesnake:stand/whitesnake_remove_stand_disc1",
+      "rotp_whitesnake:stand/whitesnake_remove_stand_disc2",
+      "rotp_whitesnake:stand/whitesnake_remove_stand_disc3",
+      "rotp_whitesnake:stand/whitesnake_remove_stand_disc4"]
+  },
+    "whitesnake_ushya": {
+      "sounds": ["rotp_whitesnake:stand/whitesnake_ushya"]
+  },
+  "whitesnake_barrage": {
+    "sounds": ["rotp_whitesnake:stand/whitesnake_barrage_sound"]
+  },
+  "pucci_remove_disk": {
+    "sounds": ["rotp_whitesnake:stand_user/pucci_remove_disk"]
+  },
+  "whitesnake_ost": {
+    "sounds": ["rotp_whitesnake:whitesnake_ost"]
+  }
+}
