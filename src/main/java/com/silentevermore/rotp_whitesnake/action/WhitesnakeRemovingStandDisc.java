@@ -25,12 +25,11 @@ import net.minecraft.world.World;
 import java.util.Optional;
 
 public class WhitesnakeRemovingStandDisc extends StandEntityAction{
-    public static final StandPose REMOVE_DISC=new StandPose("WHITESNAKE_REMOVE_STAND_DISC");
-
+    //builder
     public WhitesnakeRemovingStandDisc(StandEntityAction.Builder builder) {
         super(builder);
     }
-
+    //methods
     @Override
     public void standPerform(World world, StandEntity standEntity, IStandPower userPower, StandEntityTask task) {
         if (!world.isClientSide()){
@@ -67,7 +66,7 @@ public class WhitesnakeRemovingStandDisc extends StandEntityAction{
 
     @Override
     public void onTaskSet(World world, StandEntity standEntity, IStandPower standPower, Phase phase, StandEntityTask task, int ticks){
-        if (task.getPhase()==Phase.BUTTON_HOLD && !standEntity.isManuallyControlled() && !world.isClientSide()){
+        if (task.getPhase()==Phase.BUTTON_HOLD && !standEntity.isManuallyControlled()){
             //constants
             final ActionTarget target=task.getTarget();
             final LivingEntity entity=(LivingEntity) target.getEntity();

@@ -1,5 +1,6 @@
 package com.silentevermore.rotp_whitesnake.init;
 
+import com.silentevermore.rotp_whitesnake.client.render.WhitesnakeModel;
 import com.silentevermore.rotp_whitesnake.entity.WhitesnakeEntity;
 import com.silentevermore.rotp_whitesnake.RotpWhitesnakeAddon;
 import com.github.standobyte.jojo.action.Action;
@@ -64,7 +65,7 @@ public class InitStands {
 
     public static final RegistryObject<WhitesnakeRemovingMemoryDisk> REMOVING_THE_MEMORY_DISK = ACTIONS.register("removing_the_memory_disk",
             () -> new WhitesnakeRemovingMemoryDisk(new WhitesnakeRemovingMemoryDisk.Builder()
-                    .standPose(WhitesnakeRemovingStandDisc.REMOVE_DISC)
+                    .standPose(WhitesnakeModel.REMOVE_DISC)
                     .standSound(InitSounds.WHITESNAKE_REMOVE_DISC)
                     .staminaCost(200)
                     .resolveLevelToUnlock(0).shout(InitSounds.PUCCI_REMOVE_DISK)
@@ -76,7 +77,7 @@ public class InitStands {
                     .holdType()
                     .shout(InitSounds.PUCCI_REMOVE_DISK)
                     .resolveLevelToUnlock(2)
-                    .standPose(WhitesnakeRemovingStandDisc.REMOVE_DISC)
+                    .standPose(WhitesnakeModel.REMOVE_DISC)
                     .holdToFire(30, false)
                     .standOffsetFromUser(0.667, 0.2, 0)
                     .partsRequired(StandPart.ARMS)

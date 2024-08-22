@@ -50,7 +50,7 @@ public class WhitesnakeRemovingMemoryDisk extends StandEntityAction {
 
     @Override
     public void onTaskSet(World world, StandEntity standEntity, IStandPower standPower, Phase phase, StandEntityTask task, int ticks){
-        if (task.getPhase()==Phase.BUTTON_HOLD && !standEntity.isManuallyControlled() && !world.isClientSide()){
+        if (task.getPhase()==Phase.BUTTON_HOLD && !standEntity.isManuallyControlled()){
             //constants
             final ActionTarget target=task.getTarget();
             final LivingEntity entity=(LivingEntity) target.getEntity();

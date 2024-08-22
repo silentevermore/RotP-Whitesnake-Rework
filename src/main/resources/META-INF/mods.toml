@@ -31,12 +31,13 @@ logoFile="icon.png" #optional
 # A text field displayed in the mod UI
 # credits="Thanks for this example mod goes to Java" #optional
 # A text field displayed in the mod UI
-authors="BigKing, ArchLunatic, August_Dr, StandoByte, silentevermore, TheDoGGyS" #optional
+authors="StandoByte, silentevermore, TheDoGGyS" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 "You were one move behind."
 
-Reworked by silentevermore and TheDoGGyS
+Reworked by silentevermore and TheDoGGyS.
+Original addon belongs to ArchLunatic and others.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.rotp_whitesnake]] #optional
