@@ -1,5 +1,6 @@
 package com.silentevermore.rotp_whitesnake;
 
+import com.silentevermore.rotp_whitesnake.init.InitBlocks;
 import com.silentevermore.rotp_whitesnake.init.InitEntities;
 import com.silentevermore.rotp_whitesnake.init.InitSounds;
 import com.silentevermore.rotp_whitesnake.init.InitStands;
@@ -22,6 +23,7 @@ public class RotpWhitesnakeAddon {
         InitSounds.SOUNDS.register(modEventBus);
         InitStands.ACTIONS.register(modEventBus);
         InitStands.STANDS.register(modEventBus);
+        InitBlocks.BLOCKS.register(modEventBus);
     }
 
     public static Logger getLogger() {

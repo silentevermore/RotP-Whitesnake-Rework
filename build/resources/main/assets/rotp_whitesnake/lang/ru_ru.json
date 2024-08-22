@@ -1,0 +1,19 @@
+{
+  "entity.rotp_whitesnake.whitesnake": "Whitesnake",
+  "stand.rotp_whitesnake.whitesnake": "Whitesnake",
+
+  "action.rotp_whitesnake.whitesnake_punch": "Удар",
+  "action.rotp_whitesnake.whitesnake_heavy_punch": "Тяжёлый удар",
+  "action.rotp_whitesnake.whitesnake_combo_punch": "Добивающий удар",
+  "action.rotp_whitesnake.whitesnake_barrage": "Шквал ударов",
+
+  "action.rotp_whitesnake.whitesnake_block": "Блокирование",
+  "action.rotp_whitesnake.whitesnake_remove_stand_disc": "Извлечь/Вставить Диск стенда",
+  "action.rotp_whitesnake.whitesnake_insert_stand_disc": "Вставить Диск стенда",
+  "action.rotp_whitesnake.melt_your_heart": "Melt Your Heart",
+  "action.rotp_whitesnake.blindness": "Лишиться зрения",
+  "action.rotp_whitesnake.blindness_disable": "Восстановить зрение",
+  "action.rotp_whitesnake.removing_the_memory_disk": "Извлечь Диск памяти",
+
+  "rotp_whitesnake.subtitle.whitesnake_name": "\"Whitesnake\""
+}

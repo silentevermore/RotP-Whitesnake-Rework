@@ -32,21 +32,23 @@ public class InitStands {
     public static final RegistryObject<StandEntityAction> WHITESNAKE_PUNCH = ACTIONS.register("whitesnake_punch",
             () -> new StandEntityLightAttack(new StandEntityLightAttack.Builder()
                     .punchSound(InitSounds.WHITESNAKE_PUNCH_LIGHT)
-                    .standSound(StandEntityAction.Phase.WINDUP,InitSounds.WHITESNAKE_USHYA)));
+                    .shout(InitSounds.PUCCI_PUNCH)));
 
     public static final RegistryObject<StandEntityAction> WHITESNAKE_BARRAGE = ACTIONS.register("whitesnake_barrage",
             () -> new StandEntityMeleeBarrage(new StandEntityMeleeBarrage.Builder()
-                    .barrageHitSound(ModSounds.THE_WORLD_PUNCH_BARRAGE)
-                    .standSound(InitSounds.WHITESNAKE_BARRAGE)));
+                    .barrageHitSound(InitSounds.WHITESNAKE_PUNCH_LIGHT)
+                    .standSound(InitSounds.WHITESNAKE_USHYA)));
 
     public static final RegistryObject<StandEntityHeavyAttack> WHITESNAKE_COMBO_PUNCH = ACTIONS.register("whitesnake_combo_punch",
             () -> new StandEntityHeavyAttack(new StandEntityHeavyAttack.Builder()
                     .punchSound(InitSounds.WHITESNAKE_PUNCH_HEAVY)
+                    .standSound(InitSounds.WHITESNAKE_PUNCH_COMBO)
                     .partsRequired(StandPart.ARMS)));
 
     public static final RegistryObject<StandEntityHeavyAttack> WHITESNAKE_HEAVY_PUNCH = ACTIONS.register("whitesnake_heavy_punch",
             () -> new StandEntityHeavyAttack(new StandEntityHeavyAttack.Builder()
                     .punchSound(InitSounds.WHITESNAKE_PUNCH_HEAVY)
+                    .standSound(InitSounds.WHITESNAKE_PUNCH_COMBO)
                     .partsRequired(StandPart.ARMS)
                     .setFinisherVariation(WHITESNAKE_COMBO_PUNCH)
                     .shiftVariationOf(WHITESNAKE_PUNCH).shiftVariationOf(WHITESNAKE_BARRAGE)));
