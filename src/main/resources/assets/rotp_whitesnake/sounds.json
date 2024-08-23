@@ -29,16 +29,7 @@
     "sounds": [ "rotp_whitesnake:stand_user/whitesnake_punch_combo",
       "rotp_whitesnake:stand/whitesnake_punch_combo",
       "rotp_whitesnake:stand/whitesnake_punch_combo1",
-      "rotp_whitesnake:stand/whitesnake_punch_combo2",
-      "rotp_whitesnake:stand/whitesnake_punch_combo3",
-      "rotp_whitesnake:stand/whitesnake_punch_combo4",
-      "rotp_whitesnake:stand/whitesnake_punch_combo5",
-      "rotp_whitesnake:stand/whitesnake_punch_combo6",
-      "rotp_whitesnake:stand/whitesnake_punch_combo7",
-      "rotp_whitesnake:stand/whitesnake_punch_combo8",
-      "rotp_whitesnake:stand/whitesnake_punch_combo9",
-      "rotp_whitesnake:stand/whitesnake_punch_combo10",
-      "rotp_whitesnake:stand/whitesnake_punch_combo11"]
+      "rotp_whitesnake:stand/whitesnake_punch_combo2"]
   },
   "whitesnake_remove_disc": {
     "sounds": ["rotp_whitesnake:stand/whitesnake_remove_stand_disc1",
@@ -47,9 +38,9 @@
       "rotp_whitesnake:stand/whitesnake_remove_stand_disc4"]
   },
     "whitesnake_ushya": {
-      "sounds": ["rotp_whitesnake:stand/whitesnake_ushya",
-        "rotp_whitesnake:stand/whitesnake_ushya2",
-        "rotp_whitesnake:stand/whitesnake_ushya3"]
+      "sounds": ["rotp_whitesnake:stand/whitesnake_barrage",
+        "rotp_whitesnake:stand/whitesnake_barrage2",
+        "rotp_whitesnake:stand/whitesnake_barrage3"]
   },
   "whitesnake_barrage": {
     "sounds": ["rotp_whitesnake:stand/whitesnake_barrage_sound"]
