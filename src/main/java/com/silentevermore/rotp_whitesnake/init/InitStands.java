@@ -1,5 +1,6 @@
 package com.silentevermore.rotp_whitesnake.init;
 
+import com.silentevermore.rotp_whitesnake.action.WhitesnakeThrowDisc;
 import com.silentevermore.rotp_whitesnake.client.render.WhitesnakeModel;
 import com.silentevermore.rotp_whitesnake.entity.WhitesnakeEntity;
 import com.silentevermore.rotp_whitesnake.RotpWhitesnakeAddon;
@@ -84,6 +85,15 @@ public class InitStands {
                     .standOffsetFromUser(0.667, 0.2, 0)
                     .partsRequired(StandPart.ARMS)
             ));
+    public static final RegistryObject<WhitesnakeThrowDisc> WHITESNAKE_THROW_DISC = ACTIONS.register("whitesnake_throw_disc",
+            () -> new WhitesnakeThrowDisc(new StandEntityAction.Builder()
+                    .standSound(ModSounds.STAND_PUNCH_SWING)
+                    .standPerformDuration(15)
+                    .staminaCost(3)
+                    .resolveLevelToUnlock(2)
+                    .standOffsetFront()
+                    .cooldown(300)
+                    .partsRequired(StandPart.ARMS)));
 
     public static final EntityStandRegistryObject<EntityStandType<StandStats>, StandEntityType<WhitesnakeEntity>> WHITESNAKE =
             new EntityStandRegistryObject<>("whitesnake",
@@ -99,7 +109,8 @@ public class InitStands {
                                     WHITESNAKE_BLOCK.get(),
                                     REMOVING_THE_MEMORY_DISK.get(),
                                     WHITESNAKE_REMOVE_STAND_DISC.get(),
-                                    BLINDNESS.get()
+                                    BLINDNESS.get(),
+                                    WHITESNAKE_THROW_DISC.get()
                             )
                             .defaultStats(StandStats.class, new StandStats.Builder()
                                     .power(14)
