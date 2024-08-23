@@ -58,6 +58,15 @@ public class InitStands {
     public static final RegistryObject<StandEntityAction> WHITESNAKE_BLOCK = ACTIONS.register("whitesnake_block",
             StandEntityBlock::new);
 
+    public static final RegistryObject<MeltYourHeart> MELT_YOUR_HEART = ACTIONS.register("melt_your_heart",
+            () -> new MeltYourHeart(new MeltYourHeart.Builder()
+                    .holdType(100)
+                    .cooldown(20,100,0)
+                    .staminaCost(10)
+                    .standUserWalkSpeed(.5f)
+                    .autoSummonStand()
+            ));
+
     public static final RegistryObject<Blindness> BLINDNESS = ACTIONS.register("blindness",
             () -> new Blindness(new Blindness.Builder()
                     .holdType()
@@ -110,7 +119,8 @@ public class InitStands {
                                     REMOVING_THE_MEMORY_DISK.get(),
                                     WHITESNAKE_REMOVE_STAND_DISC.get(),
                                     BLINDNESS.get(),
-                                    WHITESNAKE_THROW_DISC.get()
+                                    WHITESNAKE_THROW_DISC.get(),
+                                    MELT_YOUR_HEART.get()
                             )
                             .defaultStats(StandStats.class, new StandStats.Builder()
                                     .power(14)

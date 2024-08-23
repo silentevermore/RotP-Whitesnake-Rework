@@ -10,10 +10,12 @@ import net.minecraft.pathfinding.PathType;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.state.IntegerProperty;
+import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -92,12 +94,9 @@ public class MeltHeartBlock extends Block {
         return !p_196271_1_.canSurvive(p_196271_4_, p_196271_5_) ? Blocks.AIR.defaultBlockState() : super.updateShape(p_196271_1_, p_196271_2_, p_196271_3_, p_196271_4_, p_196271_5_, p_196271_6_);
     }
 
-    public void randomTick(BlockState p_225542_1_, ServerWorld p_225542_2_, BlockPos p_225542_3_, Random p_225542_4_) {
-        if (p_225542_2_.getBrightness(LightType.BLOCK, p_225542_3_) > 11) {
-            dropResources(p_225542_1_, p_225542_2_, p_225542_3_);
-            p_225542_2_.removeBlock(p_225542_3_, false);
-        }
-
+    public void tick(BlockState p_225534_1_, ServerWorld p_225534_2_, BlockPos p_225534_3_, Random p_225534_4_) {
+        final int value=p_225534_1_.getValue(LAYERS);
+        p_225534_1_.setValue(LAYERS, Math.max(value-1,1));
     }
 
     public boolean canBeReplaced(BlockState p_196253_1_, BlockItemUseContext p_196253_2_) {

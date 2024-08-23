@@ -59,7 +59,7 @@ public class WhitesnakeBlockbench extends EntityModel<Entity> {
 		leftArmJoint = new ModelRenderer(this);
 		leftArmJoint.setPos(-0.5F, 4.0F, 0.0F);
 		leftArm.addChild(leftArmJoint);
-		leftArmJoint.texOffs(0, 16).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, 0.0F, false);
+		leftArmJoint.texOffs(0, 2).addBox(-1.0F, -1.5F, -1.5F, 3.0F, 3.0F, 3.0F, 0.0F, false);
 
 		leftForeArm = new ModelRenderer(this);
 		leftForeArm.setPos(-0.5F, 4.0F, 0.0F);
@@ -83,7 +83,7 @@ public class WhitesnakeBlockbench extends EntityModel<Entity> {
 		rightArmJoint = new ModelRenderer(this);
 		rightArmJoint.setPos(0.5F, 4.0F, 0.0F);
 		rightArm.addChild(rightArmJoint);
-		rightArmJoint.texOffs(0, 16).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, 0.0F, true);
+		rightArmJoint.texOffs(0, 2).addBox(-2.0F, -1.5F, -1.5F, 3.0F, 3.0F, 3.0F, 0.0F, true);
 
 		rightForeArm = new ModelRenderer(this);
 		rightForeArm.setPos(0.5F, 4.0F, 0.0F);
@@ -107,7 +107,7 @@ public class WhitesnakeBlockbench extends EntityModel<Entity> {
 		leftLegJoint = new ModelRenderer(this);
 		leftLegJoint.setPos(0.0F, 6.0F, 0.0F);
 		leftLeg.addChild(leftLegJoint);
-		leftLegJoint.texOffs(0, 20).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, 0.0F, false);
+		leftLegJoint.texOffs(0, 8).addBox(-1.5F, -1.5F, -1.5F, 3.0F, 3.0F, 3.0F, 0.0F, false);
 
 		leftLowerLeg = new ModelRenderer(this);
 		leftLowerLeg.setPos(0.0F, 6.0F, 0.0F);
@@ -130,7 +130,7 @@ public class WhitesnakeBlockbench extends EntityModel<Entity> {
 		rightLegJoint = new ModelRenderer(this);
 		rightLegJoint.setPos(0.0F, 6.0F, 0.0F);
 		rightLeg.addChild(rightLegJoint);
-		rightLegJoint.texOffs(0, 20).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, 0.0F, true);
+		rightLegJoint.texOffs(0, 8).addBox(-1.5F, -1.5F, -1.5F, 3.0F, 3.0F, 3.0F, 0.0F, true);
 	}
 
 	@Override
