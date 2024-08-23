@@ -1,6 +1,6 @@
 package com.silentevermore.rotp_whitesnake.init;
 
-import com.silentevermore.rotp_whitesnake.action.WhitesnakeThrowDisc;
+import com.silentevermore.rotp_whitesnake.action.*;
 import com.silentevermore.rotp_whitesnake.client.render.WhitesnakeModel;
 import com.silentevermore.rotp_whitesnake.entity.WhitesnakeEntity;
 import com.silentevermore.rotp_whitesnake.RotpWhitesnakeAddon;
@@ -14,9 +14,6 @@ import com.github.standobyte.jojo.power.impl.stand.StandInstance.StandPart;
 import com.github.standobyte.jojo.power.impl.stand.stats.StandStats;
 import com.github.standobyte.jojo.power.impl.stand.type.EntityStandType;
 import com.github.standobyte.jojo.power.impl.stand.type.StandType;
-import com.silentevermore.rotp_whitesnake.action.Blindness;
-import com.silentevermore.rotp_whitesnake.action.WhitesnakeRemovingMemoryDisk;
-import com.silentevermore.rotp_whitesnake.action.WhitesnakeRemovingStandDisc;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 
@@ -112,14 +109,14 @@ public class InitStands {
                             .storyPartName(ModStandsInit.PART_6_NAME)
                             .leftClickHotbar(
                                     WHITESNAKE_PUNCH.get(),
-                                    WHITESNAKE_BARRAGE.get()
+                                    WHITESNAKE_BARRAGE.get(),
+                                    WHITESNAKE_THROW_DISC.get()
                             )
                             .rightClickHotbar(
                                     WHITESNAKE_BLOCK.get(),
                                     REMOVING_THE_MEMORY_DISK.get(),
                                     WHITESNAKE_REMOVE_STAND_DISC.get(),
                                     BLINDNESS.get(),
-                                    WHITESNAKE_THROW_DISC.get(),
                                     MELT_YOUR_HEART.get()
                             )
                             .defaultStats(StandStats.class, new StandStats.Builder()
