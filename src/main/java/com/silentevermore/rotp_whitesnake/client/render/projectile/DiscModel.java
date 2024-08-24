@@ -18,7 +18,7 @@ public class DiscModel extends EntityModel<DiscProjectile> {
         texHeight = 64;
 
         disc = new ModelRenderer(this);
-        disc.setPos(0.0F, 24.0F, 0.0F);
+        disc.setPos(0.0F, -1.0F, 0.0F);
         disc.texOffs(0, 3).addBox(-3.0F, -1.5F, 0.0F, 4.0F, 1.0F, 2.0F, 0.0F, false);
         disc.texOffs(0, 0).addBox(-9.0F, -1.0F, -7.0F, 16.0F, 0.0F, 16.0F, 0.0F, false);
 
