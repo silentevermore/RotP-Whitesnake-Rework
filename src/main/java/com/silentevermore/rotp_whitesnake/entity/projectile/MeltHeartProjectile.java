@@ -49,7 +49,7 @@ public class MeltHeartProjectile extends ModdedProjectileEntity {
     }
     @Override
     protected double getGravityAcceleration() {
-        return .5D;
+        return 0.5D;
     }
 
     protected void breakProjectile(ActionTarget.TargetType targetType, RayTraceResult hitTarget) {
