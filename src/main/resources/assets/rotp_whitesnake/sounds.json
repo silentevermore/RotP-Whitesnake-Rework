@@ -30,9 +30,7 @@
   "whitesnake_punch_combo": {
     "sounds": [
       "rotp_whitesnake:stand_user/whitesnake_punch_combo",
-      "rotp_whitesnake:stand/whitesnake_punch_combo",
-      "rotp_whitesnake:stand/whitesnake_punch_combo1",
-      "rotp_whitesnake:stand/whitesnake_punch_combo2"
+      "rotp_whitesnake:stand/whitesnake_punch_combo"
     ]
   },
   "whitesnake_remove_disc": {
