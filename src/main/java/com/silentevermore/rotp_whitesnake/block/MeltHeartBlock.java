@@ -1,5 +1,13 @@
 package com.silentevermore.rotp_whitesnake.block;
 
+import com.github.standobyte.jojo.item.StandDiscItem;
+import com.github.standobyte.jojo.power.impl.stand.IStandPower;
+import com.github.standobyte.jojo.power.impl.stand.StandInstance;
+import com.github.standobyte.jojo.power.impl.stand.StandPower;
+import com.github.standobyte.jojo.power.impl.stand.StandUtil;
+import com.github.standobyte.jojo.power.impl.stand.type.StandType;
+import com.github.standobyte.jojo.util.mod.JojoModUtil;
+import com.silentevermore.rotp_whitesnake.init.InitStands;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -35,15 +43,21 @@ public class MeltHeartBlock extends Block {
         this.registerDefaultState(this.stateDefinition.any().setValue(LAYERS, Integer.valueOf(1)));
     }
     @Override
-    public void entityInside(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (entity instanceof LivingEntity) {
-            entity.makeStuckInBlock(state, new Vector3d(0.8D, 0.75D, 0.8D));
-            LivingEntity livingEntity = (LivingEntity) entity;
-            livingEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 100, 2, true, false));
-            livingEntity.addEffect(new EffectInstance(Effects.BLINDNESS, 100, 0, true, false));
-            livingEntity.addEffect(new EffectInstance(Effects.CONFUSION, 100, 0, true, false));
-            livingEntity.addEffect(new EffectInstance(Effects.WITHER, 100, 0, true, false));
-            livingEntity.setSwimming(true);
+    public void entityInside(BlockState state, World world, BlockPos pos, Entity entity){
+        if (entity instanceof LivingEntity && entity.isAlive()){
+            final LivingEntity livingEntity=(LivingEntity) entity;
+            IStandPower.getStandPowerOptional(livingEntity).ifPresent(
+                    power->{
+                        if (power!=null && power.getType()!=InitStands.WHITESNAKE.getStandType()){
+                            entity.makeStuckInBlock(state, new Vector3d(0.8D, 0.75D, 0.8D));
+                            livingEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 100, 2, true, false));
+                            livingEntity.addEffect(new EffectInstance(Effects.BLINDNESS, 100, 0, true, false));
+                            livingEntity.addEffect(new EffectInstance(Effects.CONFUSION, 100, 0, true, false));
+                            livingEntity.addEffect(new EffectInstance(Effects.WITHER, 100, 0, true, false));
+                            livingEntity.setSwimming(true);
+                        }
+                    }
+            );
         }
     }
     public boolean isPathfindable(BlockState p_196266_1_, IBlockReader p_196266_2_, BlockPos p_196266_3_, PathType p_196266_4_) {
@@ -78,25 +92,19 @@ public class MeltHeartBlock extends Block {
     }
 
     public boolean canSurvive(BlockState p_196260_1_, IWorldReader p_196260_2_, BlockPos p_196260_3_) {
-        BlockState blockstate = p_196260_2_.getBlockState(p_196260_3_.below());
-        if (!blockstate.is(Blocks.ICE) && !blockstate.is(Blocks.PACKED_ICE) && !blockstate.is(Blocks.BARRIER)) {
-            if (!blockstate.is(Blocks.HONEY_BLOCK) && !blockstate.is(Blocks.SOUL_SAND)) {
-                return Block.isFaceFull(blockstate.getCollisionShape(p_196260_2_, p_196260_3_.below()), Direction.UP) || blockstate.getBlock() == this && blockstate.getValue(LAYERS) == 8;
-            } else {
-                return true;
-            }
-        } else {
-            return false;
-        }
+        return false;
     }
 
     public BlockState updateShape(BlockState p_196271_1_, Direction p_196271_2_, BlockState p_196271_3_, IWorld p_196271_4_, BlockPos p_196271_5_, BlockPos p_196271_6_) {
         return !p_196271_1_.canSurvive(p_196271_4_, p_196271_5_) ? Blocks.AIR.defaultBlockState() : super.updateShape(p_196271_1_, p_196271_2_, p_196271_3_, p_196271_4_, p_196271_5_, p_196271_6_);
     }
 
-    public void tick(BlockState p_225534_1_, ServerWorld p_225534_2_, BlockPos p_225534_3_, Random p_225534_4_) {
-        final int value=p_225534_1_.getValue(LAYERS);
-        p_225534_1_.setValue(LAYERS, Math.max(value-1,1));
+    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rng) {
+        final int value=state.getValue(LAYERS);
+        state.setValue(LAYERS, Math.max(value-1,1));
+        if (state.getValue(LAYERS)<=1){
+            world.destroyBlock(pos,false);
+        }
     }
 
     public boolean canBeReplaced(BlockState p_196253_1_, BlockItemUseContext p_196253_2_) {

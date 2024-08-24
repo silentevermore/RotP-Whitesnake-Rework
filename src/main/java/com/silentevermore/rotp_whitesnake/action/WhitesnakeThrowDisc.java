@@ -19,7 +19,7 @@ public class WhitesnakeThrowDisc extends StandEntityAction {
         if (!world.isClientSide()) {
             DiscProjectile disc = new DiscProjectile(standEntity, world);
             disc.setShootingPosOf(standEntity);
-            standEntity.shootProjectile(disc, 0.75F, 0.25F);
+            standEntity.shootProjectile(disc, 2F, 0.25F);
         }
     }
 }

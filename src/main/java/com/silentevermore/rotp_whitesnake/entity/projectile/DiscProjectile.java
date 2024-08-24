@@ -46,6 +46,7 @@ public class DiscProjectile extends ModdedProjectileEntity {
     protected void breakProjectile(ActionTarget.TargetType targetType, RayTraceResult hitTarget) {
         if (targetType != ActionTarget.TargetType.ENTITY || ((EntityRayTraceResult) hitTarget).getEntity() instanceof LivingEntity) {
             super.breakProjectile(targetType, hitTarget);
+            level.playSound(null, getX(), getY(), getZ(), InitSounds.WHITESNAKE_PUNCH_LIGHT.get(), getSoundSource(), 1.0F, 1.0F);
         }
     }
 
@@ -56,7 +57,6 @@ public class DiscProjectile extends ModdedProjectileEntity {
             targetLiving.addEffect(new EffectInstance(Effects.BLINDNESS, 100, 0, true, false));
             targetLiving.addEffect(new EffectInstance(Effects.CONFUSION, 100, 0, true, false));
             targetLiving.addEffect(new EffectInstance(ModStatusEffects.STUN.get(), 100, 0, true, false));
-            level.playSound(null, getX(), getY(), getZ(), InitSounds.WHITESNAKE_PUNCH_LIGHT.get(), getSoundSource(), 1.0F, 1.0F);
             remove();
             return false;
         }
