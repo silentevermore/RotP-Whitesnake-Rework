@@ -42,7 +42,6 @@ public class DiscProjectile extends ModdedProjectileEntity {
         return 100;
     }
 
-
     protected void breakProjectile(ActionTarget.TargetType targetType, RayTraceResult hitTarget) {
         if (targetType != ActionTarget.TargetType.ENTITY || ((EntityRayTraceResult) hitTarget).getEntity() instanceof LivingEntity) {
             super.breakProjectile(targetType, hitTarget);

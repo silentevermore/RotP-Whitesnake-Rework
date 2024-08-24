@@ -94,6 +94,7 @@ public class InitStands {
     public static final RegistryObject<WhitesnakeThrowDisc> WHITESNAKE_THROW_DISC = ACTIONS.register("whitesnake_throw_disc",
             () -> new WhitesnakeThrowDisc(new StandEntityAction.Builder()
                     .standSound(ModSounds.STAND_PUNCH_SWING)
+                    .standPose(WhitesnakeModel.THROW_DISC)
                     .standPerformDuration(15)
                     .staminaCost(3)
                     .resolveLevelToUnlock(2)

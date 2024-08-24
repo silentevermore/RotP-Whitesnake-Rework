@@ -35,6 +35,7 @@ public class DiscModel extends EntityModel<DiscProjectile> {
             yRotationOffset = (yRotationOffset + ticks * 100f) % 360.0F;
         }
         disc.yRot = yRotationOffset * MathUtil.DEG_TO_RAD;
+        disc.xRot = xRotation * MathUtil.DEG_TO_RAD;
     }
 
     @Override

@@ -8,6 +8,8 @@ import com.github.standobyte.jojo.entity.stand.StandEntityTask;
 import com.github.standobyte.jojo.power.impl.stand.IStandPower;
 import com.github.standobyte.jojo.util.mod.JojoModUtil;
 import com.silentevermore.rotp_whitesnake.block.MeltHeartBlock;
+import com.silentevermore.rotp_whitesnake.entity.projectile.DiscProjectile;
+import com.silentevermore.rotp_whitesnake.entity.projectile.MeltHeartProjectile;
 import com.silentevermore.rotp_whitesnake.init.InitBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Direction;
@@ -38,30 +40,22 @@ public class MeltYourHeart extends StandEntityAction{
     public void standTickPerform(World world, StandEntity standEntity, IStandPower userPower, StandEntityTask task){
         if (!world.isClientSide()){
             //constants
-            final ServerWorld serverWorld=(ServerWorld) world;
-            final MeltHeartBlock MYH_BLOCK=InitBlocks.MELT_HEART_BLOCK.get();
             final ThreadLocalRandom rng=ThreadLocalRandom.current();
-            final Vector3d vec_pos=standEntity.position().add(
+            final MeltHeartProjectile proj=new MeltHeartProjectile(standEntity, world);
+            final Vector3d origin=standEntity.position().add(
                     rng.nextDouble(-5,5),
-                    0,
+                    5,
                     rng.nextDouble(-5,5)
             );
-            final RayTraceResult ray=JojoModUtil.rayTrace(vec_pos, new Vector3d(0,-1,0), 5f, world, standEntity, null, 0, 16f);
-            final Vector3d ray_location=ray.getLocation();
-            final BlockPos pos=new BlockPos(ray_location.x(), ray_location.y(), ray_location.z());
             //stuff
-            if (world.getBlockState(pos).getBlock()!=Blocks.AIR
-                    && world.getBlockState(pos.above()).isFaceSturdy(world, pos.above(), Direction.UP))
-            {
-                if (world.getBlockState(pos.above()).getBlock()!=MYH_BLOCK){
-                    world.setBlockAndUpdate(pos, MYH_BLOCK.defaultBlockState().setValue(LAYERS, 1));
-                }
-                world.getBlockStates(new AxisAlignedBB(standEntity.position(), standEntity.position()).inflate(5)).forEach(state -> {
-                    if (state.getBlock()==MYH_BLOCK && state.getValue(LAYERS)<8 && rng.nextFloat()<.1){
-                        world.setBlockAndUpdate(pos, state.setValue(LAYERS,state.getValue(LAYERS)+1));
-                    }
-                });
-            }
+            proj.setPos(origin.x(), origin.y(), origin.z());
+            proj.setDeltaMovement(new Vector3d(
+                    0,
+                    -5,
+                    0
+            ));
+            proj.setSpeedFactor(1f);
+            standEntity.shootProjectile(proj, 0f, .5f);
         }
     }
 }
