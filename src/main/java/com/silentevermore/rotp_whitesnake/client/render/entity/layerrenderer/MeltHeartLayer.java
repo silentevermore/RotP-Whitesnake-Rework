@@ -59,9 +59,9 @@ public class MeltHeartLayer<T extends LivingEntity, M extends EntityModel<T>> ex
     }
     @Nullable
     private ResourceLocation getTexture(EntityModel<?> model, LivingEntity entity) {
-        EffectInstance hamonSpread = entity.getEffect(InitEffects.MELT_HEART_EFFECT.get());
-        if (hamonSpread != null) {
-            int lvl = Math.min(hamonSpread.getAmplifier(), 3);
+        EffectInstance meltHeart = entity.getEffect(InitEffects.MELT_HEART_EFFECT.get());
+        if (meltHeart != null) {
+            int lvl = Math.min(meltHeart.getAmplifier(), 3);
             TextureSize size = TextureSize.getClosestTexSize(model);
             return LAYER_TEXTURES.get(size)[lvl];
         }
@@ -145,7 +145,7 @@ public class MeltHeartLayer<T extends LivingEntity, M extends EntityModel<T>> ex
         if (renderer instanceof PlayerRenderer) {
             PlayerRenderer playerRenderer = (PlayerRenderer) renderer;
             if (RENDERER_LAYERS.containsKey(playerRenderer)) {
-                MeltHeartLayer<?, ?> layer = RENDERER_LAYERS.get(playerRenderer);
+               MeltHeartLayer<?, ?> layer = RENDERER_LAYERS.get(playerRenderer);
                 if (layer != null) {
                     layer.renderHandFirstPerson(side, matrixStack,
                             buffer, light, player, playerRenderer);
@@ -165,7 +165,6 @@ public class MeltHeartLayer<T extends LivingEntity, M extends EntityModel<T>> ex
 
         ClientUtil.setupForFirstPersonRender(model, player);
         IVertexBuilder vertexBuilder = buffer.getBuffer(RenderType.entityTranslucent(texture));
-        light = ClientUtil.MAX_MODEL_LIGHT;
         ModelRenderer arm = ClientUtil.getArm(model, side);
         ModelRenderer armOuter = ClientUtil.getArmOuter(model, side);
         arm.xRot = 0.0F;
