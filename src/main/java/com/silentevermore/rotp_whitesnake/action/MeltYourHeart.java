@@ -43,19 +43,18 @@ public class MeltYourHeart extends StandEntityAction{
             final ThreadLocalRandom rng=ThreadLocalRandom.current();
             final MeltHeartProjectile proj=new MeltHeartProjectile(standEntity, world);
             final Vector3d origin=standEntity.position().add(
-                    rng.nextDouble(-5,5),
-                    5,
-                    rng.nextDouble(-5,5)
+                    0,
+                    standEntity.getBbHeight()/2f,
+                    0
             );
             //stuff
             proj.setPos(origin.x(), origin.y(), origin.z());
+            standEntity.shootProjectile(proj, 1f, .5f);
             proj.setDeltaMovement(new Vector3d(
-                    0,
-                    -5,
-                    0
+                    rng.nextDouble(-1,1),
+                    1,
+                    rng.nextDouble(-1,1)
             ));
-            proj.setSpeedFactor(1f);
-            standEntity.shootProjectile(proj, 0f, .5f);
         }
     }
 }

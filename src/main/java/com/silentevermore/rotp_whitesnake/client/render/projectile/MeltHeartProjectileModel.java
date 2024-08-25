@@ -1,5 +1,6 @@
 package com.silentevermore.rotp_whitesnake.client.render.projectile;
 
+import com.github.standobyte.jojo.util.general.MathUtil;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.silentevermore.rotp_whitesnake.entity.projectile.MeltHeartProjectile;
@@ -25,8 +26,7 @@ public class MeltHeartProjectileModel extends EntityModel<MeltHeartProjectile> {
     }
 
     public void setupAnim(MeltHeartProjectile entity, float walkAnimPos, float walkAnimSpeed, float ticks, float yRotationOffset, float xRotation) {
-        this.disc.yRot = yRotationOffset * 0.017453292F;
-        this.disc.xRot = xRotation * 0.017453292F;
+        this.disc.yRot = yRotationOffset * MathUtil.DEG_TO_RAD;
     }
 
     public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {

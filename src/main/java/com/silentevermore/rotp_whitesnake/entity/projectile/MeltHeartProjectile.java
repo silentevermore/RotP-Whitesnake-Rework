@@ -51,48 +51,42 @@ public class MeltHeartProjectile extends ModdedProjectileEntity {
     protected double getGravityAcceleration() {
         return 0.5D;
     }
-
-    protected void breakProjectile(ActionTarget.TargetType targetType, RayTraceResult hitTarget) {
-        if (targetType != ActionTarget.TargetType.ENTITY || ((EntityRayTraceResult) hitTarget).getEntity() instanceof LivingEntity) {
-            super.breakProjectile(targetType, hitTarget);
-            //sanity check
-            if (!level.isClientSide()){
-                //constants
-                final ThreadLocalRandom rng=ThreadLocalRandom.current();
-                final Vector3d pos=position();
-                final ServerWorld serverWorld=(ServerWorld) level;
-                final MeltHeartBlock MYH_BLOCK= InitBlocks.MELT_HEART_BLOCK.get();
-                final BlockPos blockPos=new BlockPos(pos.x(), pos.y(), pos.z());
-                //stuff
-                if (level.getBlockState(blockPos).getBlock()!=Blocks.AIR
-                        && level.getBlockState(blockPos.below()).isFaceSturdy(level, blockPos.above(), Direction.UP))
-                {
-                    if (level.getBlockState(blockPos.below()).getBlock()!=MYH_BLOCK){
-                        level.setBlockAndUpdate(blockPos, MYH_BLOCK.defaultBlockState().setValue(LAYERS, 1));
-                    }
-                    level.getBlockStates(new AxisAlignedBB(blockPos)).forEach(state->{
-                        if (state.getBlock()==MYH_BLOCK && state.getValue(LAYERS)<8 && rng.nextFloat()<.1){
-                            level.setBlockAndUpdate(blockPos, state.setValue(LAYERS,state.getValue(LAYERS)+1));
-                        }
-                    });
-                }
-            }
-        }
-    }
-
     @Override
     protected float getMaxHardnessBreakable() {
         return 0;
     }
-
     @Override
     public boolean standDamage() {
         return false;
     }
-
     @Override
     public float getBaseDamage() {
         return 0f;
+    }
+
+    protected void breakProjectile(ActionTarget.TargetType targetType, RayTraceResult hitTarget) {
+        super.breakProjectile(targetType, hitTarget);
+        //sanity check
+        if (!level.isClientSide()){
+            //constants
+            final ThreadLocalRandom rng=ThreadLocalRandom.current();
+            final ServerWorld serverWorld=(ServerWorld) level;
+            final MeltHeartBlock MYH_BLOCK= InitBlocks.MELT_HEART_BLOCK.get();
+            final BlockPos blockPos=blockPosition();
+            //stuff
+            if (level.getBlockState(blockPos.below()).getBlock()!=Blocks.AIR
+                    && level.getBlockState(blockPos).getBlock()==Blocks.AIR)
+            {
+                if (level.getBlockState(blockPos).getBlock()!=MYH_BLOCK){
+                    level.setBlockAndUpdate(blockPos, MYH_BLOCK.defaultBlockState().setValue(LAYERS, 1));
+                }
+                level.getBlockStates(new AxisAlignedBB(blockPos)).forEach(state->{
+                    if (state.getBlock()==MYH_BLOCK && state.getValue(LAYERS)<8 && rng.nextFloat()<.1){
+                        level.setBlockAndUpdate(blockPos, state.setValue(LAYERS,state.getValue(LAYERS)+1));
+                    }
+                });
+            }
+        }
     }
 }
 
