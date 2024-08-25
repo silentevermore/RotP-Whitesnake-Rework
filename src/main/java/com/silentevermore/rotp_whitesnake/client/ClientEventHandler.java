@@ -1,5 +1,6 @@
 package com.silentevermore.rotp_whitesnake.client;
 
+import com.github.standobyte.jojo.init.ModStatusEffects;
 import com.github.standobyte.jojo.util.mc.MCUtil;
 import com.github.standobyte.jojo.util.mc.reflection.ClientReflection;
 import com.google.common.base.MoreObjects;
@@ -10,6 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.renderer.FirstPersonRenderer;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
@@ -18,6 +20,7 @@ import net.minecraft.util.Timer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.RenderHandEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -38,6 +41,14 @@ public class ClientEventHandler {
         if (instance == null) {
             instance = new ClientEventHandler(mc);
             MinecraftForge.EVENT_BUS.register(instance);
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public <T extends LivingEntity, M extends EntityModel<T>> void onRenderLiving(RenderLivingEvent.Pre<T, M> event) {
+        LivingEntity entity = event.getEntity();
+        if (entity.hasEffect(ModStatusEffects.FULL_INVISIBILITY.get())) {
+            event.getRenderer().getDispatcher().setRenderShadow(false);
         }
     }
 

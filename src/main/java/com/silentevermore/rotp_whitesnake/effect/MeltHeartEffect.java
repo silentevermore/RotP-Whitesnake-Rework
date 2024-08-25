@@ -21,18 +21,14 @@ public class MeltHeartEffect extends UncurableEffect {
 
     @Override
     public boolean isDurationEffectTick(int duration, int level) {
-        int j = 10 >> level;
-        if (j > 0) {
-            return duration % j == 0;
-        } else {
-            return true;
-        }
+        lastDuration = duration;
+        return duration > 0 && duration % 50 == 0;
     }
 
     @Override
     public void applyEffectTick(LivingEntity entity, int level) {
         if (entity.tickCount >= 100) {
-            entity.hurt(DamageSource.WITHER, level + 0.5F);
+            entity.hurt(DamageSource.WITHER, Math.min(level + 1, Math.round(lastDuration / 20F)));
             entity.level.addParticle(ParticleTypes.CLOUD, entity.getRandomX(1.0), entity.getRandomY(), entity.getRandomZ(1.0), 0, 0, 0);
         }
     }
@@ -43,4 +39,14 @@ public class MeltHeartEffect extends UncurableEffect {
             }
             entity.addEffect(new EffectInstance(InitEffects.MELT_HEART_EFFECT.get(), duration, level));
         }
+    @Mod.EventBusSubscriber(modid = RotpWhitesnakeAddon.MOD_ID)
+    public static class Events {
+        @SubscribeEvent
+        public static void onLivingHeal(LivingHealEvent event) {
+            LivingEntity entity = (LivingEntity) event.getEntity();
+            if (entity.hasEffect(InitEffects.MELT_HEART_EFFECT.get()))
+                event.setCanceled(true);
+        }
     }
+}
+
