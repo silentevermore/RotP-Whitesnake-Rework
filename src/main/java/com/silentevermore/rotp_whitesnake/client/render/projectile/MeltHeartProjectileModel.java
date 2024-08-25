@@ -14,15 +14,16 @@ public class MeltHeartProjectileModel extends EntityModel<MeltHeartProjectile> {
     public MeltHeartProjectileModel() {
         this.texWidth = 64;
         this.texHeight = 64;
-        this.disc = new ModelRenderer(this);
-        this.disc.setPos(0.0F, 24.0F, 0.0F);
-        this.disc.texOffs(0, 3).addBox(-3.0F, -1.5F, 0.0F, 4.0F, 1.0F, 2.0F, 0.0F, false);
-        this.disc.texOffs(0, 0).addBox(-9.0F, -1.0F, -7.0F, 16.0F, 0.0F, 16.0F, 0.0F, false);
-        this.cube_r1 = new ModelRenderer(this);
-        this.cube_r1.setPos(-1.0F, -1.5F, 1.0F);
-        this.disc.addChild(this.cube_r1);
-        this.setRotationAngle(this.cube_r1, 0.0F, -1.5708F, 0.0F);
-        this.cube_r1.texOffs(0, 6).addBox(-2.0F, 0.0F, -1.0F, 4.0F, 1.0F, 2.0F, 0.0F, false);
+        disc = new ModelRenderer(this);
+        disc.setPos(0.0F, -1.0F, 0.0F);
+        disc.texOffs(0, 3).addBox(-3.0F, -1.5F, 0.0F, 4.0F, 1.0F, 2.0F, 0.0F, false);
+        disc.texOffs(0, 0).addBox(-9.0F, -1.0F, -7.0F, 16.0F, 0.0F, 16.0F, 0.0F, false);
+
+        cube_r1 = new ModelRenderer(this);
+        cube_r1.setPos(-1.0F, -1.5F, 1.0F);
+        disc.addChild(cube_r1);
+        setRotationAngle(cube_r1, 0.0F, -1.5708F, 0.0F);
+        cube_r1.texOffs(0, 6).addBox(-2.0F, 0.0F, -1.0F, 4.0F, 1.0F, 2.0F, 0.0F, false);
     }
 
     public void setupAnim(MeltHeartProjectile entity, float walkAnimPos, float walkAnimSpeed, float ticks, float yRotationOffset, float xRotation) {
