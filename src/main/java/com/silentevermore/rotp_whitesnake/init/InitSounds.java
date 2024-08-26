@@ -47,6 +47,9 @@ public class InitSounds {
     public static final RegistryObject<SoundEvent> WHITESNAKE_PUNCH_COMBO = SOUNDS.register("whitesnake_punch_combo",
             () -> new SoundEvent(new ResourceLocation(RotpWhitesnakeAddon.MOD_ID, "whitesnake_punch_combo")));
 
+    public static final RegistryObject<SoundEvent> WHITESNAKE_MELT_HEART = SOUNDS.register("whitesnake_melt_heart",
+            () -> new SoundEvent(new ResourceLocation(RotpWhitesnakeAddon.MOD_ID, "whitesnake_melt_heart")));
+
     static final OstSoundList WHITESNAKE_OST = new OstSoundList(new ResourceLocation(RotpWhitesnakeAddon.MOD_ID, "whitesnake_ost"), SOUNDS);
 
 }

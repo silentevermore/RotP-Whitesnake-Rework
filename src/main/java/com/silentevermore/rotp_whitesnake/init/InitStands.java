@@ -40,13 +40,13 @@ public class InitStands {
     public static final RegistryObject<StandEntityHeavyAttack> WHITESNAKE_COMBO_PUNCH = ACTIONS.register("whitesnake_combo_punch",
             () -> new StandEntityHeavyAttack(new StandEntityHeavyAttack.Builder()
                     .punchSound(InitSounds.WHITESNAKE_PUNCH_HEAVY)
-                    .standSound(StandEntityAction.Phase.WINDUP, InitSounds.WHITESNAKE_PUNCH_COMBO)
+                    .shout(InitSounds.WHITESNAKE_PUNCH_COMBO)
                     .partsRequired(StandPart.ARMS)));
 
     public static final RegistryObject<StandEntityHeavyAttack> WHITESNAKE_HEAVY_PUNCH = ACTIONS.register("whitesnake_heavy_punch",
             () -> new StandEntityHeavyAttack(new StandEntityHeavyAttack.Builder()
                     .punchSound(InitSounds.WHITESNAKE_PUNCH_HEAVY)
-                    .standSound(StandEntityAction.Phase.WINDUP, InitSounds.WHITESNAKE_PUNCH_COMBO)
+                    .shout(InitSounds.WHITESNAKE_PUNCH_COMBO)
                     .partsRequired(StandPart.ARMS)
                     .setFinisherVariation(WHITESNAKE_COMBO_PUNCH)
                     .shiftVariationOf(WHITESNAKE_PUNCH).shiftVariationOf(WHITESNAKE_BARRAGE)));
@@ -57,6 +57,7 @@ public class InitStands {
 
     public static final RegistryObject<MeltYourHeart> MELT_YOUR_HEART = ACTIONS.register("melt_your_heart",
             () -> new MeltYourHeart(new MeltYourHeart.Builder()
+                    .standSound(InitSounds.WHITESNAKE_MELT_HEART)
                     .holdType(100)
                     .cooldown(20,100,0)
                     .staminaCost(10)

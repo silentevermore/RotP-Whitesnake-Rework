@@ -67,6 +67,9 @@
   "pucci_remove_disk": {
     "sounds": ["rotp_whitesnake:stand_user/pucci_remove_disk"]
   },
+  "whitesnake_melt_heart": {
+    "sounds": ["rotp_whitesnake:stand/whitesnake_melt_heart"]
+  },
   "whitesnake_ost": {
     "sounds": ["rotp_whitesnake:whitesnake_ost"]
   }
