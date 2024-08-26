@@ -46,114 +46,6 @@ public class WhitesnakeModel extends HumanoidStandModel<WhitesnakeEntity>{
 	}
 	@Override
 	protected void initActionPoses() {
-		actionAnim.put(StandPose.RANGED_ATTACK, new PosedActionAnimation.Builder<WhitesnakeEntity>()
-				.addPose(StandEntityAction.Phase.BUTTON_HOLD, new ModelPose<>(new RotationAngle[] {
-						new RotationAngle(body, 0.0F, -0.48F, 0.0F),
-						new RotationAngle(leftArm, 0.0F, 0.0F, 0.0F),
-						new RotationAngle(leftForeArm, 0.0F, 0.0F, 0.0F),
-						new RotationAngle(rightArm, -1.0908F, 0.0F, 1.5708F),
-						new RotationAngle(rightForeArm, 0.0F, 0.0F, 0.0F)
-				}))
-				.build(idlePose));
-        // TODO: disc eject
-        ModelPose<WhitesnakeEntity> disc_eject1 = new ModelPose<>(new RotationAngle[] {
-                RotationAngle.fromDegrees(body, 0, 0, 0),
-                RotationAngle.fromDegrees(leftArm, 0, 0, -5),
-                RotationAngle.fromDegrees(rightArm, -12.5, -10, 20),
-                RotationAngle.fromDegrees(rightForeArm, 0, 0, -42.5),
-                RotationAngle.fromDegrees(leftLeg, 0.4407, -9.9904, -2.5385),
-                RotationAngle.fromDegrees(rightLeg, 0.2187, 4.9952, 2.5095)
-        });
-		ModelPose<WhitesnakeEntity> disc_eject2 = new ModelPose<>(new RotationAngle[] {
-				RotationAngle.fromDegrees(body, 2.5, 25, 0),
-				RotationAngle.fromDegrees(leftArm, -74.5276, -18.9354, -48.7151),
-				RotationAngle.fromDegrees(leftForeArm, -42.5, 0, 0),
-				RotationAngle.fromDegrees(rightArm, -14.3397, -14.6599, 25.0651),
-				RotationAngle.fromDegrees(rightForeArm, 0, 0, -47.5),
-				RotationAngle.fromDegrees(leftLeg, 0.4407, -9.9904, -2.5385),
-				RotationAngle.fromDegrees(rightLeg, 0.2187, 4.9952, 2.5095)
-		});
-		ModelPose<WhitesnakeEntity> disc_eject3 = new ModelPose<>(new RotationAngle[] {
-				RotationAngle.fromDegrees(body, 2.5, 30, 0),
-				RotationAngle.fromDegrees(leftArm, -81.5093, -16.007, -58.7417),
-				RotationAngle.fromDegrees(leftForeArm, -57.5, 0, 0),
-				RotationAngle.fromDegrees(rightArm, -14.3397, -14.6599, 25.0651),
-				RotationAngle.fromDegrees(rightForeArm, 0, 0, -47.5),
-				RotationAngle.fromDegrees(leftLeg, 0.4407, -9.9904, -2.5385),
-				RotationAngle.fromDegrees(rightLeg, 0.2187, 4.9952, 2.5095)
-		});
-		ModelPose<WhitesnakeEntity> disc_eject4 = new ModelPose<>(new RotationAngle[] {
-				RotationAngle.fromDegrees(body, 2.5, 30, 0),
-				RotationAngle.fromDegrees(leftArm, -81.5093, -16.007, -58.7417),
-				RotationAngle.fromDegrees(leftForeArm, -57.5, 0, 0),
-				RotationAngle.fromDegrees(rightArm, -22.5308, -22.2269, 33.7341),
-				RotationAngle.fromDegrees(rightForeArm, 0, 0, -52.5),
-				RotationAngle.fromDegrees(leftLeg, 0.4407, -9.9904, -2.5385),
-				RotationAngle.fromDegrees(rightLeg, 0.2187, 4.9952, 2.5095)
-		});
-		ModelPose<WhitesnakeEntity> disc_eject5 = new ModelPose<>(new RotationAngle[] {
-				RotationAngle.fromDegrees(body, 0, 32.5, 0),
-				RotationAngle.fromDegrees(leftArm, -96.5093, -16.007, -58.7417),
-				RotationAngle.fromDegrees(leftForeArm, -57.5, 0, 0),
-				RotationAngle.fromDegrees(rightArm, -22.5308, -22.2269, 33.7341),
-				RotationAngle.fromDegrees(rightForeArm, 0, 0, -52.5),
-				RotationAngle.fromDegrees(leftLeg, 0.4407, -9.9904, -2.5385),
-				RotationAngle.fromDegrees(rightLeg, 0.2187, 4.9952, 2.5095)
-		});
-		ModelPose<WhitesnakeEntity> disc_eject6 = new ModelPose<>(new RotationAngle[] {
-				RotationAngle.fromDegrees(body, 25, -35, 0),
-				RotationAngle.fromDegrees(leftArm, -4.3118, 23.8478, -91.254),
-				RotationAngle.fromDegrees(leftForeArm, 0, 0, 0),
-				RotationAngle.fromDegrees(rightArm, -22.5308, -22.2269, 33.7341),
-				RotationAngle.fromDegrees(rightForeArm, 0, 0, -52.5),
-				RotationAngle.fromDegrees(leftLeg, 0.4407, -9.9904, -2.5385),
-				RotationAngle.fromDegrees(rightLeg, 0.2187, 4.9952, 2.5095)
-		});
-		ModelPose<WhitesnakeEntity> disc_eject7 = new ModelPose<>(new RotationAngle[] {
-				RotationAngle.fromDegrees(body, 25, -35, 0),
-				RotationAngle.fromDegrees(leftArm, -14.3118, 23.8478, -91.254),
-				RotationAngle.fromDegrees(leftForeArm, 0, 0, 0),
-				RotationAngle.fromDegrees(rightArm, -11.5912, -11.0441, 15.0265),
-				RotationAngle.fromDegrees(rightForeArm, 0, 0, -37.5),
-				RotationAngle.fromDegrees(leftLeg, 0.4407, -9.9904, -2.5385),
-				RotationAngle.fromDegrees(rightLeg, 0.2187, 4.9952, 2.5095)
-		});
-		ModelPose<WhitesnakeEntity> disc_eject8 = new ModelPose<>(new RotationAngle[] {
-				RotationAngle.fromDegrees(body, 25, -35, 0),
-				RotationAngle.fromDegrees(leftArm, -14.3118, 23.8478, -91.254),
-				RotationAngle.fromDegrees(leftForeArm, 0, 0, 0),
-				RotationAngle.fromDegrees(rightArm, -12.5, -10, 20),
-				RotationAngle.fromDegrees(rightForeArm, 0, 0, -42.5),
-				RotationAngle.fromDegrees(leftLeg, 0.4407, -9.9904, -2.5385),
-				RotationAngle.fromDegrees(rightLeg, 0.2187, 4.9952, 2.5095)
-		});
-		ModelPose<WhitesnakeEntity> disc_eject9 = new ModelPose<>(new RotationAngle[] {
-				RotationAngle.fromDegrees(body, 0, -25, 0),
-				RotationAngle.fromDegrees(leftArm, 0, 0, 0),
-				RotationAngle.fromDegrees(leftForeArm, 0, 0, 0),
-				RotationAngle.fromDegrees(rightArm, -12.5, -10, 20),
-				RotationAngle.fromDegrees(rightForeArm, 0, 0, -42.5),
-				RotationAngle.fromDegrees(leftLeg, 0.4407, -9.9904, -2.5385),
-				RotationAngle.fromDegrees(rightLeg, 0.2187, 4.9952, 2.5095)
-		});
-		ModelPose<WhitesnakeEntity> disc_eject10 = new ModelPose<>(new RotationAngle[] {
-				RotationAngle.fromDegrees(body, 0, 0, 0),
-				RotationAngle.fromDegrees(leftArm, 0, 0, 0),
-				RotationAngle.fromDegrees(leftForeArm, 0, 0, 0),
-				RotationAngle.fromDegrees(rightArm, -12.5, -10, 20),
-				RotationAngle.fromDegrees(rightForeArm, 0, 0, -42.5),
-				RotationAngle.fromDegrees(leftLeg, -0.6301, -10.0563, -4.618),
-				RotationAngle.fromDegrees(rightLeg, -0.8416, 5.0198, 0.1512)
-		});
-		ModelPose<WhitesnakeEntity> disc_eject11 = new ModelPose<>(new RotationAngle[] {
-				RotationAngle.fromDegrees(body, 0, 0, 0),
-				RotationAngle.fromDegrees(leftArm, 0, 0, -5),
-				RotationAngle.fromDegrees(leftForeArm, 0, 0, 0),
-				RotationAngle.fromDegrees(rightArm, -12.5, -10, 20),
-				RotationAngle.fromDegrees(rightForeArm, 0, 0, -42.5),
-				RotationAngle.fromDegrees(leftLeg, 0.4407, -9.9904, -2.5385),
-				RotationAngle.fromDegrees(rightLeg, 0.2187, 4.9952, 2.5095)
-		});
         // TODO: disc throw
 		ModelPose<WhitesnakeEntity> disc_throw1 = new ModelPose<>(new RotationAngle[] {
 				RotationAngle.fromDegrees(head,0, 0, 0),
@@ -207,26 +99,66 @@ public class WhitesnakeModel extends HumanoidStandModel<WhitesnakeEntity>{
 				RotationAngle.fromDegrees(rightLeg, 10.5594, 18.6119, 10.5594),
 				RotationAngle.fromDegrees(rightLowerLeg, 0, 0, 0)
 		});
+		// TODO: disc eject anim
+		ModelPose<WhitesnakeEntity> handPose1 = new ModelPose<>(new RotationAngle[] {
+				RotationAngle.fromDegrees(head, 7.07745, 17.67052, -0.24255),
+				RotationAngle.fromDegrees(body, -5.36618, 44.85374, 2.17107),
+				RotationAngle.fromDegrees(leftArm, -68.76766, 46.68301, -58.12778),
+				RotationAngle.fromDegrees(leftArmJoint, -28.26919, -3.12516, 10.12488),
+				RotationAngle.fromDegrees(leftForeArm, -51.40133, -1.40325, 17.91077),
+				RotationAngle.fromDegrees(rightArm, -40.65653, -55.87912, 39.57735),
+				RotationAngle.fromDegrees(rightArmJoint, -35, 0, 0),
+				RotationAngle.fromDegrees(rightForeArm, -59.11573, -8.14866, -32.88084),
+				RotationAngle.fromDegrees(leftLeg, -22.65707, 4.36733, -21.87297),
+				RotationAngle.fromDegrees(leftLegJoint, 22.5, 0, 0),
+				RotationAngle.fromDegrees(leftLowerLeg, 65, 0F, 0F),
+				RotationAngle.fromDegrees(rightLeg, -4.82651, 19.91262, 0.09026),
+				RotationAngle.fromDegrees(rightLegJoint, 30, 0, 0),
+				RotationAngle.fromDegrees(rightLowerLeg, 47.5, 0, 0)
+		});
+		ModelPose<WhitesnakeEntity> handPose2 = new ModelPose<>(new RotationAngle[] {
+				RotationAngle.fromDegrees(body, 23.42006, 87.28165, 30.44076),
+				RotationAngle.fromDegrees(leftArm, -95.81017, 30.10619, -65.35952),
+				RotationAngle.fromDegrees(leftForeArm, -39.67255, 7.8716, 9.79518),
+				RotationAngle.fromDegrees(rightArm, -65.65653, -55.87912, 39.57735),
+				RotationAngle.fromDegrees(rightForeArm, -59.11573, -8.14866, -32.88084),
+				RotationAngle.fromDegrees(leftLeg, -40.15707, 4.36733, -21.87297),
+				RotationAngle.fromDegrees(leftLegJoint, 32.5, 0, 0),
+				RotationAngle.fromDegrees(leftLowerLeg, 72.5, 0, 0),
+				RotationAngle.fromDegrees(rightLeg, 0.17349, 19.91262, 0.09026),
+				RotationAngle.fromDegrees(rightLowerLeg, 47.5, 0, 0)
+		});
+		ModelPose<WhitesnakeEntity> handPose3 = new ModelPose<>(new RotationAngle[] {
+				RotationAngle.fromDegrees(body,5.61655, -19.24988, -6.59941),
+				RotationAngle.fromDegrees(leftArm, -44.39437, -7.21253, -100.1517),
+				RotationAngle.fromDegrees(leftForeArm, -18.72132, 1.733, 0.51371),
+				RotationAngle.fromDegrees(rightArm, 48.41451, -4.88845, 31.92263),
+				RotationAngle.fromDegrees(leftLeg, 23.22511, -29.4987, -19.00839),
+				RotationAngle.fromDegrees(leftLegJoint, 10, 0, 0),
+				RotationAngle.fromDegrees(leftLowerLeg, 35, 0, 0F),
+				RotationAngle.fromDegrees(rightLeg, -17.94067, -9.99038, 2.53852),
+				RotationAngle.fromDegrees(rightLowerLeg, 60, 0, 0)
+		});
+		//stuff
+		actionAnim.put(StandPose.RANGED_ATTACK, new PosedActionAnimation.Builder<WhitesnakeEntity>()
+				.addPose(StandEntityAction.Phase.BUTTON_HOLD, new ModelPose<>(new RotationAngle[] {
+						new RotationAngle(body, 0.0F, -0.48F, 0.0F),
+						new RotationAngle(leftArm, 0.0F, 0.0F, 0.0F),
+						new RotationAngle(leftForeArm, 0.0F, 0.0F, 0.0F),
+						new RotationAngle(rightArm, -1.0908F, 0.0F, 1.5708F),
+						new RotationAngle(rightForeArm, 0.0F, 0.0F, 0.0F)
+				}))
+				.build(idlePose));
 		actionAnim.put(REMOVE_DISC, new PosedActionAnimation.Builder<WhitesnakeEntity>()
 				.addPose(StandEntityAction.Phase.BUTTON_HOLD, new ModelPoseTransitionMultiple.Builder<>(idlePose)
-						.addPose(0, disc_eject1)
-						.addPose(0.25f, disc_eject2)
-						.addPose(0.38f, disc_eject3)
-						.addPose(0.5f, disc_eject4)
-						.addPose(0.75f, disc_eject5)
-						.build(disc_eject5))
-				.addPose(StandEntityAction.Phase.PERFORM, new ModelPoseTransitionMultiple.Builder<>(disc_eject5)
-						.addPose(0.75f, disc_eject5)
-						.addPose(0.88f, disc_eject6)
-						.addPose(1f, disc_eject7)
-						.addPose(1.13f, disc_eject8)
-						.addPose(1.25f, disc_eject9)
-						.addPose(1.38f, disc_eject10)
-						.addPose(1.5f, disc_eject11)
-						.build(disc_eject11))
-				.addPose(StandEntityAction.Phase.RECOVERY, new ModelPoseTransitionMultiple.Builder<>(disc_eject11)
-						.addPose(1.5f, disc_eject11)
-						.addPose(1.75f, idlePose)
+						.addPose(0.1F, handPose1)
+						.addPose(0.75F, handPose2)
+						.build(handPose3))
+				.addPose(StandEntityAction.Phase.PERFORM, new ModelPoseTransitionMultiple.Builder<>(handPose2)
+						.addPose(0.5F, handPose3)
+						.build(handPose3))
+				.addPose(StandEntityAction.Phase.RECOVERY, new ModelPoseTransitionMultiple.Builder<>(handPose3)
+						.addPose(0.5F, handPose3)
 						.build(idlePose))
 				.build(idlePose));
 		actionAnim.put(THROW_DISC, new PosedActionAnimation.Builder<WhitesnakeEntity>()

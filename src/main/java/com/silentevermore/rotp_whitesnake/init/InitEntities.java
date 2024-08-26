@@ -14,10 +14,10 @@ public class InitEntities{
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, RotpWhitesnakeAddon.MOD_ID);
 
     public static final RegistryObject<EntityType<DiscProjectile>> WS_DISC = ENTITIES.register("disc",
-            () -> EntityType.Builder.<DiscProjectile>of(DiscProjectile::new, EntityClassification.MISC).sized(0.25F, 0.25F).noSummon().noSave().setUpdateInterval(10)
+            () -> EntityType.Builder.<DiscProjectile>of(DiscProjectile::new, EntityClassification.MISC).sized(0.25f, 0.25f).noSummon().noSave().setUpdateInterval(10)
                     .build(new ResourceLocation(RotpWhitesnakeAddon.MOD_ID, "disc").toString()));
 
     public static final RegistryObject<EntityType<MeltHeartProjectile>> WS_MHPROJ = ENTITIES.register("melt_heart_proj",
-            () -> EntityType.Builder.<MeltHeartProjectile>of(MeltHeartProjectile::new, EntityClassification.MISC).sized(0.5F, 0.5F).noSummon().noSave().setUpdateInterval(10)
+            () -> EntityType.Builder.<MeltHeartProjectile>of(MeltHeartProjectile::new, EntityClassification.MISC).sized(1f, 1f).noSummon().noSave().setUpdateInterval(10)
                     .build(new ResourceLocation(RotpWhitesnakeAddon.MOD_ID, "melt_heart").toString()));
 }

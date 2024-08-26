@@ -8,6 +8,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.silentevermore.rotp_whitesnake.entity.projectile.DiscProjectile;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.util.math.vector.Vector3d;
 
 public class DiscModel extends EntityModel<DiscProjectile> {
     private final ModelRenderer disc;
@@ -31,11 +32,8 @@ public class DiscModel extends EntityModel<DiscProjectile> {
 
     @Override
     public void setupAnim(DiscProjectile entity, float walkAnimPos, float walkAnimSpeed, float ticks, float yRotationOffset, float xRotation) {
-        if (entity.canUpdate()) {
-            yRotationOffset = (yRotationOffset + ticks * 100f) % 360.0F;
-        }
-        disc.yRot = yRotationOffset * MathUtil.DEG_TO_RAD;
         disc.xRot = xRotation * MathUtil.DEG_TO_RAD;
+        disc.yRot = yRotationOffset * MathUtil.DEG_TO_RAD;
     }
 
     @Override
