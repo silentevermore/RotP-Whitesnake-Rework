@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 public class MeltHeartProjectileRenderer extends SimpleEntityRenderer<MeltHeartProjectile, MeltHeartProjectileModel> {
 
     public MeltHeartProjectileRenderer(EntityRendererManager renderManager) {
-        super(renderManager, new MeltHeartProjectileModel(), new ResourceLocation(RotpWhitesnakeAddon.MOD_ID, "textures/entity/projectiles/disc.png"));
+        super(renderManager, new MeltHeartProjectileModel(), new ResourceLocation(RotpWhitesnakeAddon.MOD_ID, "textures/entity/projectiles/melt_heart.png"));
     }
 
     @Override

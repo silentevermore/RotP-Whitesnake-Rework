@@ -49,11 +49,11 @@ public class MeltYourHeart extends StandEntityAction{
             );
             //stuff
             proj.setPos(origin.x(), origin.y(), origin.z());
-            standEntity.shootProjectile(proj, 1f, .5f);
+            standEntity.shootProjectile(proj, .1f, .5f);
             proj.setDeltaMovement(new Vector3d(
-                    rng.nextDouble(-1,1),
-                    1,
-                    rng.nextDouble(-1,1)
+                    rng.nextDouble(-.2,.2),
+                            0,
+                    rng.nextDouble(-.2,.2)
             ));
         }
     }
