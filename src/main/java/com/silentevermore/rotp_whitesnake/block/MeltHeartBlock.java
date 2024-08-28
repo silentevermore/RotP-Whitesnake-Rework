@@ -46,18 +46,14 @@ public class MeltHeartBlock extends Block {
     public void entityInside(BlockState state, World world, BlockPos pos, Entity entity){
         if (entity instanceof LivingEntity && entity.isAlive()){
             final LivingEntity livingEntity=(LivingEntity) entity;
-            IStandPower.getStandPowerOptional(livingEntity).ifPresent(
-                    power->{
-                        if (power!=null && power.getType()!=InitStands.WHITESNAKE.getStandType()){
-                            entity.makeStuckInBlock(state, new Vector3d(0.8D, 0.75D, 0.8D));
-                            livingEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 100, 2, true, false));
-                            livingEntity.addEffect(new EffectInstance(Effects.BLINDNESS, 100, 0, true, false));
-                            livingEntity.addEffect(new EffectInstance(Effects.CONFUSION, 100, 0, true, false));
-                            livingEntity.addEffect(new EffectInstance(Effects.WITHER, 100, 0, true, false));
-                            livingEntity.setSwimming(true);
-                        }
-                    }
-            );
+            if (!IStandPower.getStandPowerOptional(livingEntity).map(power -> power.getType() == InitStands.WHITESNAKE.getStandType()).orElse(false)) {
+                entity.makeStuckInBlock(state, new Vector3d(0.8D, 0.75D, 0.8D));
+                livingEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 100, 2, true, false));
+                livingEntity.addEffect(new EffectInstance(Effects.BLINDNESS, 100, 0, true, false));
+                livingEntity.addEffect(new EffectInstance(Effects.CONFUSION, 100, 0, true, false));
+                livingEntity.addEffect(new EffectInstance(Effects.WITHER, 100, 0, true, false));
+                livingEntity.setSwimming(true);
+            }
         }
     }
     public boolean isPathfindable(BlockState p_196266_1_, IBlockReader p_196266_2_, BlockPos p_196266_3_, PathType p_196266_4_) {
