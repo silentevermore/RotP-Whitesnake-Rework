@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: RotP-Whitesnake-Rework
-Implementation-Version: BETA-1.0.2
+Implementation-Version: BETA-1.0.3
 Specification-Vendor: RotP_WTsareus
 Specification-Title: RotP_Whitesnake
-Implementation-Timestamp: 2024-08-29T13:29:27+0300
+Implementation-Timestamp: 2024-08-31T13:15:36+0300
 Specification-Version: 1
 Implementation-Vendor: RotP_WTsareus
 

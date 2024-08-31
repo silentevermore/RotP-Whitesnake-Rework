@@ -21,7 +21,6 @@ public class RotpWhitesnakeAddon {
         InitStands.ACTIONS.register(modEventBus);
         InitStands.STANDS.register(modEventBus);
         InitBlocks.BLOCKS.register(modEventBus);
-        InitEffects.EFFECTS.register(modEventBus);
     }
 
     public static Logger getLogger() {

@@ -1,5 +1,5 @@
 Java Launcher: C:\Program Files\Java\jdk1.8.0_202\bin\java.exe
-Arguments: '--in-jar, C:\Users\User\Documents\gth\RotP-Whitesnake-Rework\build\libs\RotP-Whitesnake-BETA-1.0.2.jar, --out-jar, C:\Users\User\Documents\gth\RotP-Whitesnake-Rework\build\reobfJar\output.jar, --srg-in, C:\Users\User\Documents\gth\RotP-Whitesnake-Rework\build\createMcpToSrg\output.tsrg, --live'
+Arguments: '--in-jar, C:\Users\User\Documents\gth\RotP-Whitesnake-Rework\build\libs\RotP-Whitesnake-BETA-1.0.3.jar, --out-jar, C:\Users\User\Documents\gth\RotP-Whitesnake-Rework\build\reobfJar\output.jar, --srg-in, C:\Users\User\Documents\gth\RotP-Whitesnake-Rework\build\createMcpToSrg\output.tsrg, --live'
 Classpath:
  - C:\Users\User\.gradle\caches\forge_gradle\maven_downloader\net\md-5\SpecialSource\1.11.0\SpecialSource-1.11.0-shaded.jar
  - C:\Users\User\.gradle\caches\forge_gradle\deobf_dependencies\standobyte\jojo\JJBA-RipplesOfThePast\1.16.5-0.2.2-snapshot-240331-b_mapped_official_1.16.5\JJBA-RipplesOfThePast-1.16.5-0.2.2-snapshot-240331-b_mapped_official_1.16.5.jar
@@ -85,7 +85,7 @@ Remapping jar... 20%
 Remapping jar... 30%
 Remapping jar... 40%
 Remapping jar... 50%
-Remapping jar... 60%
+Remapping jar... 61%
 Remapping jar... 70%
 Remapping jar... 80%
 Remapping jar... 90%
