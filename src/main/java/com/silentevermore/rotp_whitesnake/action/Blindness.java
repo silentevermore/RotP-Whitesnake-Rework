@@ -16,21 +16,19 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class Blindness extends StandEntityAction{
-    //constants
     private final LazySupplier<ResourceLocation> disableTex=new LazySupplier<>(()->makeIconVariant(this,"_disable"));
-    //builder
     public Blindness(StandEntityAction.Builder builder) {
         super(builder);
     }
-    //methods
+
     @Override
     public void standPerform(World world, StandEntity standEntity, IStandPower userPower, StandEntityTask task) {
-        if (!world.isClientSide()){
-            LivingEntity user=userPower.getUser();
-            if (!user.hasEffect(Effects.BLINDNESS)){
-                user.addEffect(new EffectInstance(Effects.BLINDNESS,(int)1e5,1,false,false,false));
-            }else{
-                user.removeEffect(Effects.BLINDNESS);
+        if (!world.isClientSide()) {
+            LivingEntity userEntity = userPower.getUser();
+            if (!userEntity.hasEffect(Effects.BLINDNESS)) {
+                userEntity.addEffect(new EffectInstance(Effects.BLINDNESS, (int) 1e5, 1, false, false, false));
+            } else {
+                userEntity.removeEffect(Effects.BLINDNESS);
             }
         }
     }

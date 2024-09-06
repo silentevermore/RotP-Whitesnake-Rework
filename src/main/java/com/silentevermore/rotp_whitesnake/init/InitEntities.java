@@ -17,7 +17,7 @@ public class InitEntities{
             () -> EntityType.Builder.<DiscProjectile>of(DiscProjectile::new, EntityClassification.MISC).sized(0.25f, 0.25f).noSummon().noSave().setUpdateInterval(10)
                     .build(new ResourceLocation(RotpWhitesnakeAddon.MOD_ID, "disc").toString()));
 
-    public static final RegistryObject<EntityType<MeltHeartProjectile>> WS_MHPROJ = ENTITIES.register("melt_heart_proj",
-            () -> EntityType.Builder.<MeltHeartProjectile>of(MeltHeartProjectile::new, EntityClassification.MISC).sized(1f, 1f).noSummon().noSave().setUpdateInterval(10)
+    public static final RegistryObject<EntityType<MeltHeartProjectile>> WS_MHPROJ = ENTITIES.register("melt_your_heart",
+            () -> EntityType.Builder.<MeltHeartProjectile>of(MeltHeartProjectile::new, EntityClassification.MISC).sized(0.5f, 0.5f).noSummon().noSave().setUpdateInterval(10)
                     .build(new ResourceLocation(RotpWhitesnakeAddon.MOD_ID, "melt_heart").toString()));
 }

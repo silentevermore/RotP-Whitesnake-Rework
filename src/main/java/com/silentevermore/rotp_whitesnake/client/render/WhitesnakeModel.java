@@ -1,6 +1,5 @@
 package com.silentevermore.rotp_whitesnake.client.render;
 
-import com.silentevermore.rotp_whitesnake.entity.WhitesnakeEntity;
 import com.github.standobyte.jojo.action.stand.StandEntityAction;
 import com.github.standobyte.jojo.client.render.entity.model.stand.HumanoidStandModel;
 import com.github.standobyte.jojo.client.render.entity.model.stand.bb.BlockbenchStandModelHelper;
@@ -9,13 +8,15 @@ import com.github.standobyte.jojo.client.render.entity.pose.ModelPoseTransitionM
 import com.github.standobyte.jojo.client.render.entity.pose.RotationAngle;
 import com.github.standobyte.jojo.client.render.entity.pose.anim.PosedActionAnimation;
 import com.github.standobyte.jojo.entity.stand.StandPose;
+import com.silentevermore.rotp_whitesnake.entity.WhitesnakeEntity;
 
 import javax.annotation.Nullable;
 
+import static com.silentevermore.rotp_whitesnake.action.WhitesnakeThrowDisc.THROW_DISC;
+import static com.silentevermore.rotp_whitesnake.init.InitStands.REMOVE_DISC;
+
 public class WhitesnakeModel extends HumanoidStandModel<WhitesnakeEntity>{
 	//constants
-	public static final StandPose REMOVE_DISC=new StandPose("WHITESNAKE_REMOVE_STAND_DISC");
-	public static final StandPose THROW_DISC=new StandPose("WHITESNAKE_THROW_DISC");
 	//builder
 	public WhitesnakeModel(){
 		super();
