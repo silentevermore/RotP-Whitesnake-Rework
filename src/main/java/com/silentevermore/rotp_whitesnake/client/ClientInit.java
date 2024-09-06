@@ -2,7 +2,6 @@ package com.silentevermore.rotp_whitesnake.client;
 
 import com.silentevermore.rotp_whitesnake.RotpWhitesnakeAddon;
 import com.silentevermore.rotp_whitesnake.client.render.WhitesnakeRenderer;
-
 import com.silentevermore.rotp_whitesnake.client.render.projectile.DiscRenderer;
 import com.silentevermore.rotp_whitesnake.client.render.projectile.MeltHeartProjectileRenderer;
 import com.silentevermore.rotp_whitesnake.init.InitEntities;

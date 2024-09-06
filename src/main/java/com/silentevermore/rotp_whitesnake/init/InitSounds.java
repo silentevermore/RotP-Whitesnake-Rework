@@ -1,8 +1,7 @@
 package com.silentevermore.rotp_whitesnake.init;
 
-import com.silentevermore.rotp_whitesnake.RotpWhitesnakeAddon;
-import com.github.standobyte.jojo.init.ModSounds;
 import com.github.standobyte.jojo.util.mc.OstSoundList;
+import com.silentevermore.rotp_whitesnake.RotpWhitesnakeAddon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.RegistryObject;

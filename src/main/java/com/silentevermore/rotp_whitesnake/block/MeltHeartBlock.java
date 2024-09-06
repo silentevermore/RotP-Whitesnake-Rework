@@ -30,9 +30,9 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class MeltHeartBlock extends Block {
-    public static int ticks = 0;
     public static final IntegerProperty LAYERS = BlockStateProperties.LAYERS;
     protected static final VoxelShape[] SHAPE_BY_LAYER = new VoxelShape[]{VoxelShapes.empty(), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
+    public static int ticks = 0;
 
     public MeltHeartBlock(Properties p_i48328_1_) {
         super(p_i48328_1_);
@@ -40,9 +40,9 @@ public class MeltHeartBlock extends Block {
     }
 
     @Override
-    public void entityInside(BlockState state, World world, BlockPos pos, Entity entity){
-        if (entity instanceof LivingEntity && entity.isAlive()){
-            final LivingEntity livingEntity=(LivingEntity) entity;
+    public void entityInside(BlockState state, World world, BlockPos pos, Entity entity) {
+        if (entity instanceof LivingEntity && entity.isAlive()) {
+            final LivingEntity livingEntity = (LivingEntity) entity;
             if (!IStandPower.getStandPowerOptional(livingEntity).map(power -> power.getType() == InitStands.WHITESNAKE.getStandType()).orElse(false)) {
                 entity.makeStuckInBlock(state, new Vector3d(0.8D, 0.75D, 0.8D));
                 livingEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 100, 2, true, false));
@@ -55,7 +55,7 @@ public class MeltHeartBlock extends Block {
     }
 
     public boolean isPathfindable(BlockState p_196266_1_, IBlockReader p_196266_2_, BlockPos p_196266_3_, PathType p_196266_4_) {
-        switch(p_196266_4_) {
+        switch (p_196266_4_) {
             case LAND:
                 return p_196266_1_.getValue(LAYERS) < 5;
             case WATER:
@@ -97,10 +97,10 @@ public class MeltHeartBlock extends Block {
 
     @Override
     public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rng) {
-        final int value=state.getValue(LAYERS);
-        state.setValue(LAYERS, Math.max(value-1,1));
-        if (state.getValue(LAYERS)<=1){
-            world.destroyBlock(pos,false);
+        final int value = state.getValue(LAYERS);
+        state.setValue(LAYERS, Math.max(value - 1, 1));
+        if (state.getValue(LAYERS) <= 1) {
+            world.destroyBlock(pos, false);
         }
         ticks++;
         if (ticks == 5) {

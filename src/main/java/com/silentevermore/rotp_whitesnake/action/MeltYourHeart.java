@@ -12,33 +12,34 @@ import net.minecraft.world.World;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class MeltYourHeart extends StandEntityAction{
+public class MeltYourHeart extends StandEntityAction {
     //builder
-    public MeltYourHeart(StandEntityAction.Builder builder){
+    public MeltYourHeart(StandEntityAction.Builder builder) {
         super(builder);
     }
+
     //methods
     @Override
-    protected ActionConditionResult checkStandConditions(StandEntity stand, IStandPower power, ActionTarget target){
-        return (power.getStamina()>=100) ? ActionConditionResult.POSITIVE : ActionConditionResult.NEGATIVE;
+    protected ActionConditionResult checkStandConditions(StandEntity stand, IStandPower power, ActionTarget target) {
+        return (power.getStamina() >= 100) ? ActionConditionResult.POSITIVE : ActionConditionResult.NEGATIVE;
     }
 
     @Override
-    public void standTickPerform(World world, StandEntity standEntity, IStandPower userPower, StandEntityTask task){
-        if (!world.isClientSide()){
-            final ThreadLocalRandom rng=ThreadLocalRandom.current();
-            final MeltHeartProjectile proj=new MeltHeartProjectile(standEntity, world);
-            final Vector3d origin=standEntity.position().add(
+    public void standTickPerform(World world, StandEntity standEntity, IStandPower userPower, StandEntityTask task) {
+        if (!world.isClientSide()) {
+            final ThreadLocalRandom rng = ThreadLocalRandom.current();
+            final MeltHeartProjectile proj = new MeltHeartProjectile(standEntity, world);
+            final Vector3d origin = standEntity.position().add(
                     0,
-                    standEntity.getBbHeight()/2f,
+                    standEntity.getBbHeight() / 2f,
                     0
             );
             proj.setPos(origin.x(), origin.y(), origin.z());
             standEntity.shootProjectile(proj, .1f, .5f);
             proj.setDeltaMovement(new Vector3d(
-                    rng.nextDouble(-.2,.2),
-                            0,
-                    rng.nextDouble(-.2,.2)
+                    rng.nextDouble(-.2, .2),
+                    0,
+                    rng.nextDouble(-.2, .2)
             ));
         }
     }

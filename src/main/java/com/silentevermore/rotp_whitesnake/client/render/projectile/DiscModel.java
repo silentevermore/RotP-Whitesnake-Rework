@@ -1,14 +1,11 @@
 package com.silentevermore.rotp_whitesnake.client.render.projectile;
 
-import com.github.standobyte.jojo.entity.damaging.projectile.HGEmeraldEntity;
 import com.github.standobyte.jojo.util.general.MathUtil;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-
 import com.silentevermore.rotp_whitesnake.entity.projectile.DiscProjectile;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.math.vector.Vector3d;
 
 public class DiscModel extends EntityModel<DiscProjectile> {
     private final ModelRenderer disc;
@@ -37,7 +34,7 @@ public class DiscModel extends EntityModel<DiscProjectile> {
     }
 
     @Override
-    public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+    public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         disc.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 

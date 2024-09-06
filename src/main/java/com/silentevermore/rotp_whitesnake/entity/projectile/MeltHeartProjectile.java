@@ -21,39 +21,48 @@ import static com.silentevermore.rotp_whitesnake.block.MeltHeartBlock.LAYERS;
 
 public class MeltHeartProjectile extends ModdedProjectileEntity {
     //constants
-    private boolean HIT_CEILING=false;
+    private boolean HIT_CEILING = false;
+
     //builder
     public MeltHeartProjectile(LivingEntity shooter, World world) {
         super(InitEntities.WS_MHPROJ.get(), shooter, world);
     }
+
     public MeltHeartProjectile(EntityType<? extends MeltHeartProjectile> type, World world) {
         super(type, world);
     }
+
     //methods
     @Override
     public int ticksLifespan() {
         return 100;
     }
+
     @Override
     protected double getInertia() {
         return .1d;
     }
+
     @Override
     protected boolean hasGravity() {
         return true;
     }
+
     @Override
     protected double getGravityAcceleration() {
         return .1d;
     }
+
     @Override
     protected float getMaxHardnessBreakable() {
         return 0;
     }
+
     @Override
     public boolean standDamage() {
         return false;
     }
+
     @Override
     public float getBaseDamage() {
         return 0f;
@@ -64,49 +73,49 @@ public class MeltHeartProjectile extends ModdedProjectileEntity {
         //calling super method
         super.tick();
         //constants
-        final float ticks=(float)tickCount;
-        final float lifetime=ticksLifespan()/4f;
-        final float tick_difference=MathHelper.clamp(ticks/lifetime,0,1);
-        final Vector3d delta_move=getDeltaMovement();
+        final float ticks = (float) tickCount;
+        final float lifetime = ticksLifespan() / 4f;
+        final float tick_difference = MathHelper.clamp(ticks / lifetime, 0, 1);
+        final Vector3d delta_move = getDeltaMovement();
         //stuff
-        if (!HIT_CEILING){
+        if (!HIT_CEILING) {
             setDeltaMovement(
                     delta_move.x(),
-                    (2-Math.exp(tick_difference)),
+                    (2 - Math.exp(tick_difference)),
                     delta_move.z()
             );
         }
     }
 
     protected void breakProjectile(ActionTarget.TargetType targetType, RayTraceResult hitTarget) {
-        final BlockPos blockPos=blockPosition();
-        final Vector3d delta_move=getDeltaMovement();
+        final BlockPos blockPos = blockPosition();
+        final Vector3d delta_move = getDeltaMovement();
         //sanity check
-        if (level.getBlockState(blockPos.above()).getBlock()!=Blocks.AIR) HIT_CEILING=true;
-        if (level.getBlockState(blockPos.below()).getBlock()!=Blocks.AIR) super.breakProjectile(targetType, hitTarget);
-        if (HIT_CEILING){
+        if (level.getBlockState(blockPos.above()).getBlock() != Blocks.AIR) HIT_CEILING = true;
+        if (level.getBlockState(blockPos.below()).getBlock() != Blocks.AIR)
+            super.breakProjectile(targetType, hitTarget);
+        if (HIT_CEILING) {
             setDeltaMovement(
-                    delta_move.x()*1.5f,
+                    delta_move.x() * 1.5f,
                     -1,
-                    delta_move.z()*1.5f
+                    delta_move.z() * 1.5f
             );
         }
-        if (!level.isClientSide()){
+        if (!level.isClientSide()) {
             //constants
-            final ThreadLocalRandom rng=ThreadLocalRandom.current();
-            final MeltHeartBlock MYH_BLOCK= InitBlocks.MELT_HEART_BLOCK.get();
+            final ThreadLocalRandom rng = ThreadLocalRandom.current();
+            final MeltHeartBlock MYH_BLOCK = InitBlocks.MELT_HEART_BLOCK.get();
             //stuff
-            if (level.getBlockState(blockPos.below()).getBlock()!=Blocks.AIR
-                    && level.getBlockState(blockPos).getBlock()==Blocks.AIR
-                    && level.getBlockState(blockPos.below()).getBlock()!=InitBlocks.MELT_HEART_BLOCK.get())
-            {
-                if (level.getBlockState(blockPos).getBlock()!=MYH_BLOCK){
+            if (level.getBlockState(blockPos.below()).getBlock() != Blocks.AIR
+                    && level.getBlockState(blockPos).getBlock() == Blocks.AIR
+                    && level.getBlockState(blockPos.below()).getBlock() != InitBlocks.MELT_HEART_BLOCK.get()) {
+                if (level.getBlockState(blockPos).getBlock() != MYH_BLOCK) {
                     level.setBlockAndUpdate(blockPos, MYH_BLOCK.defaultBlockState().setValue(LAYERS, 1));
                 }
-                level.getBlockStates(new AxisAlignedBB(blockPos)).forEach(state->{
-                    if (state.getBlock()==MYH_BLOCK && state.getValue(LAYERS)<8 && rng.nextFloat()<.1){
+                level.getBlockStates(new AxisAlignedBB(blockPos)).forEach(state -> {
+                    if (state.getBlock() == MYH_BLOCK && state.getValue(LAYERS) < 8 && rng.nextFloat() < .1) {
                         level.setBlockAndUpdate(blockPos, state
-                                .setValue(LAYERS,state.getValue(LAYERS)+1));
+                                .setValue(LAYERS, state.getValue(LAYERS) + 1));
                     }
                 });
             }

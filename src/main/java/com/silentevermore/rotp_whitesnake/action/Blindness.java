@@ -15,8 +15,9 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class Blindness extends StandEntityAction{
-    private final LazySupplier<ResourceLocation> disableTex=new LazySupplier<>(()->makeIconVariant(this,"_disable"));
+public class Blindness extends StandEntityAction {
+    private final LazySupplier<ResourceLocation> disableTex = new LazySupplier<>(() -> makeIconVariant(this, "_disable"));
+
     public Blindness(StandEntityAction.Builder builder) {
         super(builder);
     }
@@ -34,8 +35,8 @@ public class Blindness extends StandEntityAction{
     }
 
     @Override
-    public IFormattableTextComponent getTranslatedName(IStandPower power, String key){
-        if (power!=null && power.getUser().hasEffect(Effects.BLINDNESS)){
+    public IFormattableTextComponent getTranslatedName(IStandPower power, String key) {
+        if (power != null && power.getUser().hasEffect(Effects.BLINDNESS)) {
             return new TranslationTextComponent("action.rotp_whitesnake.blindness_disable");
         }
         return new TranslationTextComponent(key);
@@ -43,7 +44,7 @@ public class Blindness extends StandEntityAction{
 
     @Override
     public ResourceLocation getIconTexturePath(@Nullable IStandPower power) {
-        if (power!=null && power.getUser().hasEffect(Effects.BLINDNESS)){
+        if (power != null && power.getUser().hasEffect(Effects.BLINDNESS)) {
             return this.disableTex.get();
         }
         return super.getIconTexturePath(power);

@@ -73,7 +73,7 @@ public class InitStands {
             () -> new MeltYourHeart(new MeltYourHeart.Builder()
                     .standSound(InitSounds.WHITESNAKE_MELT_HEART)
                     .holdType(100)
-                    .cooldown(20,100,0)
+                    .cooldown(20, 100, 0)
                     .staminaCost(10)
                     .standUserWalkSpeed(.5f)
                     .autoSummonStand()

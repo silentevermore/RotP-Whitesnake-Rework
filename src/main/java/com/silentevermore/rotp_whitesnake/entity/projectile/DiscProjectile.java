@@ -38,16 +38,16 @@ public class DiscProjectile extends ModdedProjectileEntity {
         super(type, world);
     }
 
-    @Override
-    public int ticksLifespan() {
-        return 100;
-    }
-
     public static ItemStack withStand(ItemStack discStack, String tag) {
         CompoundNBT nbt = new CompoundNBT();
         nbt.putString("StandType", JojoCustomRegistries.STANDS.getKeyAsString(JojoCustomRegistries.STANDS.getRegistry().getValue(new ResourceLocation(tag))));
         discStack.getOrCreateTag().put("Stand", nbt);
         return discStack;
+    }
+
+    @Override
+    public int ticksLifespan() {
+        return 100;
     }
 
     protected void breakProjectile(ActionTarget.TargetType targetType, RayTraceResult hitTarget) {

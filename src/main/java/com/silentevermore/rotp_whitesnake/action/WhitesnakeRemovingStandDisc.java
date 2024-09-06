@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 
 import java.util.Optional;
 
-public class WhitesnakeRemovingStandDisc extends StandEntityAction{
+public class WhitesnakeRemovingStandDisc extends StandEntityAction {
     public WhitesnakeRemovingStandDisc(StandEntityAction.Builder builder) {
         super(builder);
     }
@@ -36,21 +36,21 @@ public class WhitesnakeRemovingStandDisc extends StandEntityAction{
             LivingEntity victim = (LivingEntity) target.getEntity();
             LivingEntity target_user = StandUtil.getStandUser(victim);
             if (target.getType() == TargetType.ENTITY && target_user instanceof LivingEntity && target_user.isAlive()) {
-                IStandPower.getStandPowerOptional(target_user).ifPresent(power->{
+                IStandPower.getStandPowerOptional(target_user).ifPresent(power -> {
                     if (power.hasPower()) {
                         Optional<StandInstance> previousDiscStand = power.putOutStand();
                         userPower.consumeStamina(300);
-                        previousDiscStand.ifPresent(prevStand->
-                                MCUtil.giveItemTo(userPower.getUser(),StandDiscItem.withStand(new ItemStack(ModItems.STAND_DISC.get()),prevStand),false));
-                    }else{
+                        previousDiscStand.ifPresent(prevStand ->
+                                MCUtil.giveItemTo(userPower.getUser(), StandDiscItem.withStand(new ItemStack(ModItems.STAND_DISC.get()), prevStand), false));
+                    } else {
                         if (StandDiscItem.validStandDisc(held_item, false)) {
                             StandInstance stand_instance = StandDiscItem.getStandFromStack(held_item);
-                            power.giveStandFromInstance(stand_instance,true);
+                            power.giveStandFromInstance(stand_instance, true);
                             power.toggleSummon();
                             held_item.shrink(held_item.getCount());
                         }
                     }
-                    standEntity.playSound(InitSounds.WHITESNAKE_REMOVE_DISC.get(),1,1);
+                    standEntity.playSound(InitSounds.WHITESNAKE_REMOVE_DISC.get(), 1, 1);
                 });
                 userPower.setCooldownTimer(InitStands.WHITESNAKE_REMOVE_STAND_DISC.get(), 20);
             }
@@ -66,7 +66,7 @@ public class WhitesnakeRemovingStandDisc extends StandEntityAction{
             if (entity instanceof LivingEntity && entity.isAlive() && user instanceof LivingEntity) {
                 Vector3d dir_difference = entity.position().subtract(user.position());
                 Vector3d normal_dir = dir_difference.normalize();
-                standEntity.lookAt(EntityAnchorArgument.Type.EYES,normal_dir);
+                standEntity.lookAt(EntityAnchorArgument.Type.EYES, normal_dir);
                 standEntity.moveTo(entity.position().subtract(normal_dir));
             }
         }
@@ -83,12 +83,12 @@ public class WhitesnakeRemovingStandDisc extends StandEntityAction{
     }
 
     @Override
-    public boolean cancelHeldOnGettingAttacked(IStandPower power,DamageSource dmgSource,float dmgAmount) {
+    public boolean cancelHeldOnGettingAttacked(IStandPower power, DamageSource dmgSource, float dmgAmount) {
         return true;
     }
 
     @Override
-    public boolean noAdheringToUserOffset(IStandPower standPower,StandEntity standEntity) {
+    public boolean noAdheringToUserOffset(IStandPower standPower, StandEntity standEntity) {
         return true;
     }
 }
