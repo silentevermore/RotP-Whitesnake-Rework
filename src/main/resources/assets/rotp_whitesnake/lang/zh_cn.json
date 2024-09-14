@@ -4,7 +4,7 @@
 
   "action.rotp_whitesnake.whitesnake_punch": "轻击",
   "action.rotp_whitesnake.whitesnake_heavy_punch": "重拳",
-  "action.rotp_whitesnake.whitesnake_combo_punch": "胜利之拳",
+  "action.rotp_whitesnake.whitesnake_combo_punch": "终结之拳",
   "action.rotp_whitesnake.whitesnake_barrage": "连打",
 
   "action.rotp_whitesnake.whitesnake_block": "防御",
@@ -15,6 +15,9 @@
   "action.rotp_whitesnake.blindness_disable": "重获光明",
   "action.rotp_whitesnake.removing_the_memory_disk": "抽取记忆光碟",
   "action.rotp_whitesnake.whitesnake_throw_disc": "扔出光碟",
+  "block.rotp_whitesnake.melt_heart_block": "白蛇的粘液",
+  "entity.rotp_whitesnake.melt_your_heart": "喷溅的粘液",
+  "entity.rotp_whitesnake.disc": "扔出的光碟",
 
   "rotp_whitesnake.subtitle.whitesnake_name": "\"白蛇\""
 }

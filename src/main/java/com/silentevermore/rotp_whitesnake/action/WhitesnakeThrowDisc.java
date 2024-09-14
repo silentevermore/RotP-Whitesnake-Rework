@@ -14,6 +14,7 @@ import com.silentevermore.rotp_whitesnake.entity.projectile.DiscProjectile;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
 public class WhitesnakeThrowDisc extends StandEntityAction {
@@ -23,11 +24,10 @@ public class WhitesnakeThrowDisc extends StandEntityAction {
         super(builder);
     }
 
-    public static ItemStack getDisc(LivingEntity entity) {
-        ItemStack itemStack;
-        itemStack = entity.getMainHandItem();
-        if (itemStack == ItemStack.EMPTY) {
-            itemStack = entity.getOffhandItem();
+    public static ItemStack getDisc(LivingEntity entity){
+        ItemStack itemStack=entity.getItemInHand(Hand.MAIN_HAND);
+        if (itemStack.isEmpty()) {
+            itemStack=entity.getItemInHand(Hand.OFF_HAND);
         }
         return itemStack;
     }

@@ -32,22 +32,22 @@ public class WhitesnakeRemovingStandDisc extends StandEntityAction {
         if (!world.isClientSide()) {
             ActionTarget target = task.getTarget();
             LivingEntity user = userPower.getUser();
-            ItemStack held_item = WhitesnakeThrowDisc.getDisc(user);
             LivingEntity victim = (LivingEntity) target.getEntity();
             LivingEntity target_user = StandUtil.getStandUser(victim);
             if (target.getType() == TargetType.ENTITY && target_user instanceof LivingEntity && target_user.isAlive()) {
                 IStandPower.getStandPowerOptional(target_user).ifPresent(power -> {
+                    ItemStack held_item = WhitesnakeThrowDisc.getDisc(user);
                     if (power.hasPower()) {
                         Optional<StandInstance> previousDiscStand = power.putOutStand();
                         userPower.consumeStamina(300);
                         previousDiscStand.ifPresent(prevStand ->
                                 MCUtil.giveItemTo(userPower.getUser(), StandDiscItem.withStand(new ItemStack(ModItems.STAND_DISC.get()), prevStand), false));
                     } else {
-                        if (StandDiscItem.validStandDisc(held_item, false)) {
+                        if (StandDiscItem.validStandDisc(held_item, false) && !held_item.isEmpty()) {
                             StandInstance stand_instance = StandDiscItem.getStandFromStack(held_item);
+                            held_item.shrink(held_item.getCount());
                             power.giveStandFromInstance(stand_instance, true);
                             power.toggleSummon();
-                            held_item.shrink(held_item.getCount());
                         }
                     }
                     standEntity.playSound(InitSounds.WHITESNAKE_REMOVE_DISC.get(), 1, 1);

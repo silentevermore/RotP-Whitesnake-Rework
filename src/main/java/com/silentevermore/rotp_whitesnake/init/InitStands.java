@@ -92,8 +92,9 @@ public class InitStands {
                     .standPose(REMOVE_DISC)
                     .standSound(InitSounds.WHITESNAKE_REMOVE_DISC)
                     .staminaCost(200)
-                    .resolveLevelToUnlock(0).shout(InitSounds.PUCCI_REMOVE_DISK)
-                    .holdToFire(10, false)
+                    .resolveLevelToUnlock(0)
+                    .shout(InitSounds.PUCCI_REMOVE_DISK)
+                    .holdToFire(30, false)
                     .partsRequired(StandPart.ARMS)));
 
     public static final RegistryObject<StandEntityAction> WHITESNAKE_REMOVE_STAND_DISC = ACTIONS.register("whitesnake_remove_stand_disc",
