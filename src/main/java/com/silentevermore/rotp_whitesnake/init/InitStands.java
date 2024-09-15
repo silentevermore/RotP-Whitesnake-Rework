@@ -62,9 +62,7 @@ public class InitStands {
                     .staminaCost(3)
                     .resolveLevelToUnlock(2)
                     .standOffsetFront()
-                    .cooldown(300)
                     .partsRequired(StandPart.ARMS)));
-
 
     public static final RegistryObject<StandEntityAction> WHITESNAKE_BLOCK = ACTIONS.register("whitesnake_block",
             StandEntityBlock::new);
@@ -90,7 +88,7 @@ public class InitStands {
     public static final RegistryObject<WhitesnakeRemovingMemoryDisk> REMOVING_THE_MEMORY_DISK = ACTIONS.register("removing_the_memory_disk",
             () -> new WhitesnakeRemovingMemoryDisk(new WhitesnakeRemovingMemoryDisk.Builder()
                     .standPose(REMOVE_DISC)
-                    .standSound(InitSounds.WHITESNAKE_REMOVE_DISC)
+                    .standSound(StandEntityAction.Phase.PERFORM,InitSounds.WHITESNAKE_REMOVE_DISC)
                     .staminaCost(200)
                     .resolveLevelToUnlock(0)
                     .shout(InitSounds.PUCCI_REMOVE_DISK)
@@ -101,6 +99,7 @@ public class InitStands {
             () -> new WhitesnakeRemovingStandDisc(new WhitesnakeRemovingStandDisc.Builder()
                     .holdType()
                     .shout(InitSounds.PUCCI_REMOVE_DISK)
+                    .standSound(StandEntityAction.Phase.PERFORM,InitSounds.WHITESNAKE_REMOVE_DISC)
                     .resolveLevelToUnlock(2)
                     .standPose(REMOVE_DISC)
                     .holdToFire(30, false)

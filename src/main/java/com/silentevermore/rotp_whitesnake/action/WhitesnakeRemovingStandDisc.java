@@ -1,5 +1,6 @@
 package com.silentevermore.rotp_whitesnake.action;
 
+import com.github.standobyte.jojo.action.ActionConditionResult;
 import com.github.standobyte.jojo.action.ActionTarget;
 import com.github.standobyte.jojo.action.ActionTarget.TargetType;
 import com.github.standobyte.jojo.action.stand.StandEntityAction;
@@ -50,9 +51,9 @@ public class WhitesnakeRemovingStandDisc extends StandEntityAction {
                             power.toggleSummon();
                         }
                     }
-                    standEntity.playSound(InitSounds.WHITESNAKE_REMOVE_DISC.get(), 1, 1);
                 });
-                userPower.setCooldownTimer(InitStands.WHITESNAKE_REMOVE_STAND_DISC.get(), 20);
+                userPower.setCooldownTimer(InitStands.WHITESNAKE_REMOVE_STAND_DISC.get(), 30);
+                userPower.setCooldownTimer(InitStands.REMOVING_THE_MEMORY_DISK.get(), 30);
             }
         }
     }

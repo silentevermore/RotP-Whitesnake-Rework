@@ -14,6 +14,7 @@ import com.silentevermore.rotp_whitesnake.entity.projectile.DiscProjectile;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.INBT;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
@@ -34,28 +35,21 @@ public class WhitesnakeThrowDisc extends StandEntityAction {
 
     @Override
     protected ActionConditionResult checkStandConditions(StandEntity standEntity, IStandPower power, ActionTarget target) {
-        if (!(getDisc(power.getUser()).getItem() instanceof StandDiscItem)) {
-            return ActionConditionResult.NEGATIVE;
-        }
-        return ActionConditionResult.POSITIVE;
+        return StandDiscItem.validStandDisc(getDisc(power.getUser()),standEntity.level.isClientSide()) ? ActionConditionResult.POSITIVE : ActionConditionResult.NEGATIVE;
     }
 
     @Override
     public void standPerform(World world, StandEntity standEntity, IStandPower userPower, StandEntityTask task) {
         if (!world.isClientSide()) {
-            LivingEntity entity = userPower.getUser();
-            DiscProjectile disc = new DiscProjectile(standEntity, world);
-            ItemStack item = getDisc(entity);
-            if (StandDiscItem.validStandDisc(item, world.isClientSide())) {
-                if (entity instanceof PlayerEntity) {
-                    if (!((PlayerEntity) entity).abilities.instabuild) {
-                        item.shrink(item.getCount());
-                    }
+            final PlayerEntity player=(PlayerEntity) userPower.getUser();
+            final DiscProjectile disc=new DiscProjectile(standEntity, world);
+            final ItemStack item=getDisc(player);
+            if (StandDiscItem.validStandDisc(item, false)) {
+                if (!player.abilities.instabuild) {
+                    item.shrink(item.getCount());
                 }
-                StandInstance stand_instance = StandDiscItem.getStandFromStack(item);
-                RotpWhitesnakeAddon.getLogger().debug("Disc: " + stand_instance.getType().getRegistryName());
-                disc.getTags().add(stand_instance.getType().getRegistryName().toString());
-//                disc.getTags().add(stand_instance.getType().toString());
+                final StandInstance stand_instance=StandDiscItem.getStandFromStack(item);
+                disc.getPersistentData().put("disc_stand",stand_instance.writeNBT());
             }
             disc.setShootingPosOf(standEntity);
             standEntity.shootProjectile(disc, 2F, 0.25F);

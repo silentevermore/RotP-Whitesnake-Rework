@@ -42,8 +42,8 @@ public class WhitesnakeRemovingMemoryDisk extends StandEntityAction {
                         ((StandEntity) power.getStandManifestation()).addEffect(new EffectInstance(Effects.CONFUSION, 100, 9, false, false, false));
                     }
                 });
-                final Action<?> RemovingMemoryDisk = InitStands.REMOVING_THE_MEMORY_DISK.get();
-                userPower.setCooldownTimer(RemovingMemoryDisk, 60);
+                userPower.setCooldownTimer(InitStands.WHITESNAKE_REMOVE_STAND_DISC.get(), 30);
+                userPower.setCooldownTimer(InitStands.REMOVING_THE_MEMORY_DISK.get(), 30);
             }
         }
     }
