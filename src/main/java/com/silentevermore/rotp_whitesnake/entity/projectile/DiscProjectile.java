@@ -74,13 +74,13 @@ public class DiscProjectile extends ModdedProjectileEntity {
             if (target instanceof LivingEntity){
                 final LivingEntity targetLiving=(LivingEntity) target;
                 final boolean is_stand_compatible=IStandPower.getStandPowerOptional(targetLiving).isPresent();
+                if (!is_stand_compatible) dropDisc();
                 IStandPower.getStandPowerOptional(targetLiving).ifPresent(power -> {
                     targetLiving.addEffect(new EffectInstance(Effects.BLINDNESS, 10, 0, true, false));
                     targetLiving.addEffect(new EffectInstance(Effects.CONFUSION, 100, 0, true, false));
                     giveStand(targetLiving);
                 });
                 RotpWhitesnakeAddon.getLogger().debug(is_stand_compatible);
-                if (!is_stand_compatible) dropDisc();
                 this.remove();
             }
         }
@@ -93,8 +93,9 @@ public class DiscProjectile extends ModdedProjectileEntity {
         if (disc_stand instanceof CompoundNBT){
             final StandInstance stand=StandInstance.fromNBT(disc_stand);
             IStandPower.getStandPowerOptional(targetLiving).ifPresent(power->{
-                if (power.hasPower()) MCUtil.giveItemTo(targetLiving, withStand(), false);
-                power.clear();
+                power.putOutStand().ifPresent(prevStand -> {
+                    MCUtil.giveItemTo(targetLiving, StandDiscItem.withStand(new ItemStack(ModItems.STAND_DISC.get()), prevStand), true);
+                });
                 power.giveStandFromInstance(stand,false);
             });
         }
