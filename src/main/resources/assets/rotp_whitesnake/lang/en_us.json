@@ -16,5 +16,7 @@
   "action.rotp_whitesnake.removing_the_memory_disk": "Eject Memory Disc",
   "action.rotp_whitesnake.whitesnake_throw_disc": "Throw Disc",
 
-  "rotp_whitesnake.subtitle.whitesnake_name": "\"Whitesnake\""
+  "rotp_whitesnake.subtitle.whitesnake_name": "\"Whitesnake\"",
+  "rotp_whitesnake.memory_disc.player_name": "%s",
+  "item.rotp_whitesnake.memory_disc_item": "Memory Disc"
 }

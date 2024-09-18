@@ -1,9 +1,6 @@
 package com.silentevermore.rotp_whitesnake;
 
-import com.silentevermore.rotp_whitesnake.init.InitBlocks;
-import com.silentevermore.rotp_whitesnake.init.InitEntities;
-import com.silentevermore.rotp_whitesnake.init.InitSounds;
-import com.silentevermore.rotp_whitesnake.init.InitStands;
+import com.silentevermore.rotp_whitesnake.init.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -23,6 +20,7 @@ public class RotpWhitesnakeAddon {
         InitStands.ACTIONS.register(modEventBus);
         InitStands.STANDS.register(modEventBus);
         InitBlocks.BLOCKS.register(modEventBus);
+        InitItems.ITEMS.register(modEventBus);
     }
 
     public static Logger getLogger() {

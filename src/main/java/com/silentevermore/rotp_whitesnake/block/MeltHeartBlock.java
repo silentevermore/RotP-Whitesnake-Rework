@@ -1,6 +1,9 @@
 package com.silentevermore.rotp_whitesnake.block;
 
 import com.github.standobyte.jojo.power.impl.stand.IStandPower;
+import com.github.standobyte.jojo.util.mc.damage.DamageUtil;
+import com.silentevermore.rotp_whitesnake.RotpWhitesnakeAddon;
+import com.silentevermore.rotp_whitesnake.entity.WhitesnakeEntity;
 import com.silentevermore.rotp_whitesnake.init.InitStands;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -14,6 +17,7 @@ import net.minecraft.potion.Effects;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -41,15 +45,16 @@ public class MeltHeartBlock extends Block {
 
     @Override
     public void entityInside(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (entity instanceof LivingEntity && entity.isAlive()) {
+        if (entity instanceof LivingEntity && !(entity instanceof WhitesnakeEntity) && entity.isAlive()) {
             final LivingEntity livingEntity = (LivingEntity) entity;
             if (!IStandPower.getStandPowerOptional(livingEntity).map(power -> power.getType() == InitStands.WHITESNAKE.getStandType()).orElse(false)) {
                 entity.makeStuckInBlock(state, new Vector3d(0.8D, 0.75D, 0.8D));
                 livingEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 100, 2, true, false));
                 livingEntity.addEffect(new EffectInstance(Effects.BLINDNESS, 100, 0, true, false));
                 livingEntity.addEffect(new EffectInstance(Effects.CONFUSION, 100, 0, true, false));
-                livingEntity.addEffect(new EffectInstance(Effects.WITHER, 100, 0, true, false));
+                //livingEntity.addEffect(new EffectInstance(Effects.WITHER, 100, 0, true, false));
                 livingEntity.setSwimming(true);
+                if (livingEntity.isAlive()) livingEntity.hurt(DamageSource.WITHER,.5f);
             }
         }
     }

@@ -16,5 +16,6 @@
   "action.rotp_whitesnake.removing_the_memory_disk": "Извлечь Диск памяти",
   "action.rotp_whitesnake.whitesnake_throw_disc": "Метнуть диск",
 
-  "rotp_whitesnake.subtitle.whitesnake_name": "\"Whitesnake\""
+  "rotp_whitesnake.subtitle.whitesnake_name": "\"Whitesnake\"",
+  "item.rotp_whitesnake.memory_disc_item": "Диск Памяти"
 }

@@ -22,16 +22,13 @@ import static com.silentevermore.rotp_whitesnake.block.MeltHeartBlock.LAYERS;
 public class MeltHeartProjectile extends ModdedProjectileEntity {
     //constants
     private boolean HIT_CEILING = false;
-
     //builder
     public MeltHeartProjectile(LivingEntity shooter, World world) {
         super(InitEntities.WS_MHPROJ.get(), shooter, world);
     }
-
     public MeltHeartProjectile(EntityType<? extends MeltHeartProjectile> type, World world) {
         super(type, world);
     }
-
     //methods
     @Override
     public int ticksLifespan() {
@@ -88,36 +85,38 @@ public class MeltHeartProjectile extends ModdedProjectileEntity {
     }
 
     protected void breakProjectile(ActionTarget.TargetType targetType, RayTraceResult hitTarget) {
-        final BlockPos blockPos = blockPosition();
-        final Vector3d delta_move = getDeltaMovement();
-        //sanity check
-        if (level.getBlockState(blockPos.above()).getBlock() != Blocks.AIR) HIT_CEILING = true;
-        if (level.getBlockState(blockPos.below()).getBlock() != Blocks.AIR)
-            super.breakProjectile(targetType, hitTarget);
-        if (HIT_CEILING) {
-            setDeltaMovement(
-                    delta_move.x() * 1.5f,
-                    -1,
-                    delta_move.z() * 1.5f
-            );
-        }
-        if (!level.isClientSide()) {
-            //constants
-            final ThreadLocalRandom rng = ThreadLocalRandom.current();
-            final MeltHeartBlock MYH_BLOCK = InitBlocks.MELT_HEART_BLOCK.get();
-            //stuff
-            if (level.getBlockState(blockPos.below()).getBlock() != Blocks.AIR
-                    && level.getBlockState(blockPos).getBlock() == Blocks.AIR
-                    && level.getBlockState(blockPos.below()).getBlock() != InitBlocks.MELT_HEART_BLOCK.get()) {
-                if (level.getBlockState(blockPos).getBlock() != MYH_BLOCK) {
-                    level.setBlockAndUpdate(blockPos, MYH_BLOCK.defaultBlockState().setValue(LAYERS, 1));
-                }
-                level.getBlockStates(new AxisAlignedBB(blockPos)).forEach(state -> {
-                    if (state.getBlock() == MYH_BLOCK && state.getValue(LAYERS) < 8 && rng.nextFloat() < .1) {
-                        level.setBlockAndUpdate(blockPos, state
-                                .setValue(LAYERS, state.getValue(LAYERS) + 1));
+        if (targetType!=ActionTarget.TargetType.ENTITY){
+            final BlockPos blockPos = blockPosition();
+            final Vector3d delta_move = getDeltaMovement();
+            //sanity check
+            if (level.getBlockState(blockPos.above()).getBlock() != Blocks.AIR) HIT_CEILING = true;
+            if (level.getBlockState(blockPos.below()).getBlock() != Blocks.AIR)
+                super.breakProjectile(targetType, hitTarget);
+            if (HIT_CEILING) {
+                setDeltaMovement(
+                        delta_move.x() * 1.5f,
+                        -1,
+                        delta_move.z() * 1.5f
+                );
+            }
+            if (!level.isClientSide()) {
+                //constants
+                final ThreadLocalRandom rng = ThreadLocalRandom.current();
+                final MeltHeartBlock MYH_BLOCK = InitBlocks.MELT_HEART_BLOCK.get();
+                //stuff
+                if (level.getBlockState(blockPos.below()).getBlock() != Blocks.AIR
+                        && level.getBlockState(blockPos).getBlock() == Blocks.AIR
+                        && level.getBlockState(blockPos.below()).getBlock() != InitBlocks.MELT_HEART_BLOCK.get()) {
+                    if (level.getBlockState(blockPos).getBlock() != MYH_BLOCK) {
+                        level.setBlockAndUpdate(blockPos, MYH_BLOCK.defaultBlockState().setValue(LAYERS, 1));
                     }
-                });
+                    level.getBlockStates(new AxisAlignedBB(blockPos)).forEach(state -> {
+                        if (state.getBlock() == MYH_BLOCK && state.getValue(LAYERS) < 8 && rng.nextFloat() < .1) {
+                            level.setBlockAndUpdate(blockPos, state
+                                    .setValue(LAYERS, state.getValue(LAYERS) + 1));
+                        }
+                    });
+                }
             }
         }
     }
