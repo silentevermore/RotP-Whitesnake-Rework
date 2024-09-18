@@ -1,0 +1,8 @@
+{
+  "skins": {
+    "rotp_whitesnake:skinA": {
+      "stand_type": "rotp_whitesnake:whitesnake",
+      "color": "#D5D5D5"
+    }
+  }
+}
