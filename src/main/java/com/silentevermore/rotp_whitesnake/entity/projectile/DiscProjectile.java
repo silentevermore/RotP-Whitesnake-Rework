@@ -76,7 +76,8 @@ public class DiscProjectile extends ModdedProjectileEntity {
                 final boolean is_stand_compatible=IStandPower.getStandPowerOptional(targetLiving).isPresent();
                 if (!is_stand_compatible) dropDisc();
                 IStandPower.getStandPowerOptional(targetLiving).ifPresent(power -> {
-                    targetLiving.addEffect(new EffectInstance(Effects.BLINDNESS, 10, 0, true, false));
+                    targetLiving.addEffect(new EffectInstance(Effects.BLINDNESS, 20, 0, true, false));
+                    targetLiving.addEffect(new EffectInstance(Effects.BLINDNESS, 20, 0, true, false));
                     targetLiving.addEffect(new EffectInstance(Effects.CONFUSION, 100, 0, true, false));
                     giveStand(targetLiving);
                 });
@@ -113,7 +114,7 @@ public class DiscProjectile extends ModdedProjectileEntity {
 
     @Override
     public float getBaseDamage() {
-        return 0.75F;
+        return 1F;
     }
 }
 

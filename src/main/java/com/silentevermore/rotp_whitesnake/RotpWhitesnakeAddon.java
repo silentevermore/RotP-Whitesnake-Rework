@@ -3,6 +3,7 @@ package com.silentevermore.rotp_whitesnake;
 import com.silentevermore.rotp_whitesnake.init.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +14,7 @@ public class RotpWhitesnakeAddon {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public RotpWhitesnakeAddon() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        final IEventBus modEventBus=FMLJavaModLoadingContext.get().getModEventBus();
 
         InitEntities.ENTITIES.register(modEventBus);
         InitSounds.SOUNDS.register(modEventBus);
@@ -22,7 +23,6 @@ public class RotpWhitesnakeAddon {
         InitBlocks.BLOCKS.register(modEventBus);
         InitItems.ITEMS.register(modEventBus);
     }
-
     public static Logger getLogger() {
         return LOGGER;
     }

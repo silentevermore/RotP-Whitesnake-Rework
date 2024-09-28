@@ -22,11 +22,9 @@ public class InitItems {
 
     public static final RegistryObject<MemoryDiscItem> MEMORY_DISC_ITEM = ITEMS.register("memory_disc_item",
             () -> new MemoryDiscItem(new Item.Properties()
-                    .rarity(Rarity.EPIC)
-                    .setNoRepair()
+                    .rarity(Rarity.RARE)
                     .stacksTo(1)
                     .tab(JojoMod.MAIN_TAB)
-                    .food(new Food.Builder().alwaysEat().build())
             )
     );
 }

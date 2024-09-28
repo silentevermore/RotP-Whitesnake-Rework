@@ -13,10 +13,13 @@
   "action.rotp_whitesnake.melt_your_heart": "Melt Your Heart",
   "action.rotp_whitesnake.blindness": "Lose Sight",
   "action.rotp_whitesnake.blindness_disable": "Restore Sight",
-  "action.rotp_whitesnake.removing_the_memory_disk": "Eject Memory Disc",
+  "action.rotp_whitesnake.removing_the_memory_disk": "Eject/Insert Memory Disc",
   "action.rotp_whitesnake.whitesnake_throw_disc": "Throw Disc",
 
   "rotp_whitesnake.subtitle.whitesnake_name": "\"Whitesnake\"",
   "rotp_whitesnake.memory_disc.player_name": "%s",
-  "item.rotp_whitesnake.memory_disc_item": "Memory Disc"
+  "rotp_whitesnake.memory_disc.current_player": "Contains memory of: %s",
+  "rotp_whitesnake.memory_disc.no_current_player": "Disk doesn't contain any memory",
+  "item.rotp_whitesnake.memory_disc_item": "Memory Disc",
+  "rotp_whitesnake.stand_skins.skinA": "Whitesnake Old"
 }
