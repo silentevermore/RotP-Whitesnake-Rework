@@ -54,35 +54,27 @@ public class WhitesnakeRemovingMemoryDisk extends StandEntityAction {
                 if (!MemoryDiscItem.discBelongsTo(itemStack,victim)){
                     if (victim instanceof PlayerEntity){
                         final PlayerEntity victim_player=(PlayerEntity) victim;
-                        if (!victim_player.abilities.instabuild) victim_player.setGameMode(GameType.ADVENTURE);
                         IStandPower.getStandPowerOptional(victim_player).ifPresent(stand_power->{
                             if (stand_power.getStandManifestation() instanceof StandEntity){
                                 final StandEntity stand_manifest=(StandEntity) stand_power.getStandManifestation();
-                                stand_manifest.addEffect(new EffectInstance(ModStatusEffects.STUN.get(), 999999, 9, false, false, false));
+                                stand_manifest.getPersistentData().putBoolean("MEMORY_DISK_AFFECTED",true);
                             }
                         });
-                    }else{
-                        victim.addEffect(new EffectInstance(ModStatusEffects.STUN.get(), 999999, 9, false, false, false));
-                        victim.addEffect(new EffectInstance(Effects.BLINDNESS, 999999, 9, false, false, false));
-                        victim.addEffect(new EffectInstance(Effects.CONFUSION, 999999, 9, false, false, false));
                     }
+                    victim.getPersistentData().putBoolean("MEMORY_DISK_AFFECTED",true);
                     final ItemStack disc=MemoryDiscItem.withTargetNbt(new ItemStack(InitItems.MEMORY_DISC_ITEM.get()), victim);
                     MCUtil.giveItemTo(player, disc, true);
                 }else{
                     if (victim instanceof PlayerEntity){
                         final PlayerEntity victim_player=(PlayerEntity) victim;
-                        if (!victim_player.abilities.instabuild) victim_player.setGameMode(GameType.SURVIVAL);
                         IStandPower.getStandPowerOptional(victim_player).ifPresent(stand_power->{
                             if (stand_power.getStandManifestation() instanceof StandEntity){
                                 final StandEntity stand_manifest=(StandEntity) stand_power.getStandManifestation();
-                                stand_manifest.removeEffect(ModStatusEffects.STUN.get());
+                                stand_manifest.getPersistentData().putBoolean("MEMORY_DISK_AFFECTED",false);
                             }
                         });
-                    }else{
-                        victim.removeEffect(Effects.CONFUSION);
-                        victim.removeEffect(Effects.BLINDNESS);
-                        victim.removeEffect(ModStatusEffects.STUN.get());
                     }
+                    victim.getPersistentData().putBoolean("MEMORY_DISK_AFFECTED",false);
                     itemStack.shrink(itemStack.getCount());
                 }
                 userPower.setCooldownTimer(InitStands.WHITESNAKE_REMOVE_STAND_DISC.get(), 30);

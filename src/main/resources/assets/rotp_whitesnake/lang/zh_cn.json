@@ -19,5 +19,10 @@
   "entity.rotp_whitesnake.melt_your_heart": "喷溅的粘液",
   "entity.rotp_whitesnake.disc": "扔出的光碟",
 
-  "rotp_whitesnake.subtitle.whitesnake_name": "\"白蛇\""
+  "rotp_whitesnake.subtitle.whitesnake_name": "\"白蛇\"",
+  "rotp_whitesnake.memory_disc.player_name": "%s",
+  "rotp_whitesnake.memory_disc.current_player": "来自%s",
+  "rotp_whitesnake.memory_disc.no_current_player": "空白的记忆光碟",
+  "item.rotp_whitesnake.memory_disc_item": "记忆光碟",
+  "rotp_whitesnake.stand_skins.skinA": "旧版"
 }
