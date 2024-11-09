@@ -1,0 +1,25 @@
+{
+  "entity.rotp_whitesnake.whitesnake": "Whitesnake",
+  "stand.rotp_whitesnake.whitesnake": "Whitesnake",
+
+  "action.rotp_whitesnake.whitesnake_punch": "Puñetazo",
+  "action.rotp_whitesnake.whitesnake_heavy_punch": "Golpe fuerte",
+  "action.rotp_whitesnake.whitesnake_combo_punch": "Golpe finalizador",
+  "action.rotp_whitesnake.whitesnake_barrage": "Bombardeo de puñetazos",
+
+  "action.rotp_whitesnake.whitesnake_block": "Bloquear",
+  "action.rotp_whitesnake.whitesnake_remove_stand_disc": "Expulsar/Insertar disco Stand",
+  "action.rotp_whitesnake.whitesnake_insert_stand_disc": "Insertar disco Stand",
+  "action.rotp_whitesnake.melt_your_heart": "Derrite tu corazón",
+  "action.rotp_whitesnake.blindness": "Perder la vista",
+  "action.rotp_whitesnake.blindness_disable": "Restaurar la vista",
+  "action.rotp_whitesnake.removing_the_memory_disk": "Expulsar/Insertar Disco de Memoria",
+  "action.rotp_whitesnake.whitesnake_throw_disc": "Lanzar disco",
+
+  "rotp_whitesnake.subtitle.whitesnake_name": "\"Whitesnake\"",
+  "rotp_whitesnake.memory_disc.player_name": "%s",
+  "rotp_whitesnake.memory_disc.current_player": "Contiene memoria de: %s",
+  "rotp_whitesnake.memory_disc.no_current_player": "El disco no contiene ninguna memoria",
+  "item.rotp_whitesnake.memory_disc_item": "Disco de memoria",
+  "rotp_whitesnake.stand_skins.skinA": "Whitesnake Vieja"
+}

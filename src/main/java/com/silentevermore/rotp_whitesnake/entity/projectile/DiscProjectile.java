@@ -12,7 +12,9 @@ import com.github.standobyte.jojo.util.mc.MCUtil;
 import com.silentevermore.rotp_whitesnake.RotpWhitesnakeAddon;
 import com.silentevermore.rotp_whitesnake.init.InitBlocks;
 import com.silentevermore.rotp_whitesnake.init.InitEntities;
+import com.silentevermore.rotp_whitesnake.init.InitItems;
 import com.silentevermore.rotp_whitesnake.init.InitSounds;
+import com.silentevermore.rotp_whitesnake.item.MemoryDiscItem;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -41,11 +43,16 @@ public class DiscProjectile extends ModdedProjectileEntity {
         super(type, world);
     }
 
-    private ItemStack withStand() {
+    private ItemStack withStand(){
         final CompoundNBT disc_nbt=this.getPersistentData();
         final CompoundNBT disc_stand=disc_nbt.getCompound("disc_stand");
         final StandInstance stand=StandInstance.fromNBT(disc_stand);
         return StandDiscItem.withStand(new ItemStack(ModItems.STAND_DISC.get()),stand);
+    }
+
+    private ItemStack withMemory(){
+        final CompoundNBT disc_nbt=this.getPersistentData();
+        return MemoryDiscItem.withTargetNbt(new ItemStack(InitItems.MEMORY_DISC_ITEM.get()), disc_nbt.getCompound("player_data"));
     }
 
     @Override
@@ -55,8 +62,13 @@ public class DiscProjectile extends ModdedProjectileEntity {
 
     private void dropDisc(){
         if (!level.isClientSide()){
+            final String disc_type=this.getPersistentData().getString("TYPE");
             final ItemEntity itemEntity=new ItemEntity(level, getX(), getY(), getZ());
-            itemEntity.setItem(withStand());
+            if (disc_type.equals("stand_disc")){
+                itemEntity.setItem(withStand());
+            }else if (disc_type.equals("memory_disc")){
+                itemEntity.setItem(withMemory());
+            }
             level.addFreshEntity(itemEntity);
         }
     }
@@ -69,19 +81,28 @@ public class DiscProjectile extends ModdedProjectileEntity {
     }
 
     @Override
-    protected boolean hurtTarget(Entity target, @Nullable LivingEntity owner) {
+    protected boolean hurtTarget(Entity target, @Nullable LivingEntity owner){
         if (!target.level.isClientSide()){
             if (target instanceof LivingEntity){
                 final LivingEntity targetLiving=(LivingEntity) target;
-                final boolean is_stand_compatible=IStandPower.getStandPowerOptional(targetLiving).isPresent();
-                if (!is_stand_compatible) dropDisc();
-                IStandPower.getStandPowerOptional(targetLiving).ifPresent(power -> {
-                    targetLiving.addEffect(new EffectInstance(Effects.BLINDNESS, 20, 0, true, false));
-                    targetLiving.addEffect(new EffectInstance(Effects.BLINDNESS, 20, 0, true, false));
-                    targetLiving.addEffect(new EffectInstance(Effects.CONFUSION, 100, 0, true, false));
-                    giveStand(targetLiving);
-                });
-                RotpWhitesnakeAddon.getLogger().debug(is_stand_compatible);
+                final String disc_type=this.getPersistentData().getString("TYPE");
+                if (disc_type.equals("stand_disc")){
+                    final boolean is_stand_compatible=IStandPower.getStandPowerOptional(targetLiving).isPresent();
+                    if (!is_stand_compatible) dropDisc();
+                    IStandPower.getStandPowerOptional(targetLiving).ifPresent(power -> {
+                        targetLiving.addEffect(new EffectInstance(Effects.BLINDNESS, 20, 0, true, false));
+                        targetLiving.addEffect(new EffectInstance(Effects.BLINDNESS, 20, 0, true, false));
+                        targetLiving.addEffect(new EffectInstance(Effects.CONFUSION, 100, 0, true, false));
+                        giveStand(targetLiving);
+                    });
+                }else if (disc_type.equals("memory_disc")){
+                    final CompoundNBT disc_nbt=this.getPersistentData().getCompound("player_data");
+                    if (disc_nbt.getString("PLAYER_ID").equals(targetLiving.getUUID().toString())){
+                        targetLiving.getPersistentData().putBoolean("MEMORY_DISK_AFFECTED",false);
+                    }else{
+                        dropDisc();
+                    }
+                }
                 this.remove();
             }
         }
@@ -95,7 +116,7 @@ public class DiscProjectile extends ModdedProjectileEntity {
             final StandInstance stand=StandInstance.fromNBT(disc_stand);
             IStandPower.getStandPowerOptional(targetLiving).ifPresent(power->{
                 power.putOutStand().ifPresent(prevStand -> {
-                    MCUtil.giveItemTo(targetLiving, StandDiscItem.withStand(new ItemStack(ModItems.STAND_DISC.get()), prevStand), true);
+                    MCUtil.giveItemTo(targetLiving, StandDiscItem.withStand(new ItemStack(ModItems.STAND_DISC.get()), prevStand), false);
                 });
                 power.giveStandFromInstance(stand,false);
             });

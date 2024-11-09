@@ -1,6 +1,7 @@
 package com.silentevermore.rotp_whitesnake;
 
 import com.silentevermore.rotp_whitesnake.init.*;
+import com.silentevermore.rotp_whitesnake.network.PacketHandler;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -22,6 +23,7 @@ public class RotpWhitesnakeAddon {
         InitStands.STANDS.register(modEventBus);
         InitBlocks.BLOCKS.register(modEventBus);
         InitItems.ITEMS.register(modEventBus);
+        PacketHandler.init();
     }
     public static Logger getLogger() {
         return LOGGER;

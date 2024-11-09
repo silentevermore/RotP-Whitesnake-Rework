@@ -8,6 +8,8 @@ import com.github.standobyte.jojo.client.render.entity.pose.ModelPoseTransitionM
 import com.github.standobyte.jojo.client.render.entity.pose.RotationAngle;
 import com.github.standobyte.jojo.client.render.entity.pose.anim.PosedActionAnimation;
 import com.github.standobyte.jojo.entity.stand.StandPose;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.silentevermore.rotp_whitesnake.entity.WhitesnakeEntity;
 
 import javax.annotation.Nullable;
@@ -15,20 +17,18 @@ import javax.annotation.Nullable;
 import static com.silentevermore.rotp_whitesnake.action.WhitesnakeThrowDisc.THROW_DISC;
 import static com.silentevermore.rotp_whitesnake.init.InitStands.REMOVE_DISC;
 
-public class WhitesnakeModel extends HumanoidStandModel<WhitesnakeEntity> {
+public class WhitesnakeModel extends HumanoidStandModel<WhitesnakeEntity>{
     //constants
     //builder
     public WhitesnakeModel() {
         super();
         BlockbenchStandModelHelper.fillFromBlockbenchExport(new WhitesnakeBlockbench(), this);
     }
-
     //methods
     @Override
     public void prepareMobModel(@Nullable WhitesnakeEntity entity, float walkAnimPos, float walkAnimSpeed, float partialTick) {
         super.prepareMobModel(entity, walkAnimPos, walkAnimSpeed, partialTick);
     }
-
     @Override
     protected RotationAngle[][] initSummonPoseRotations() {
         return new RotationAngle[][]{
@@ -47,9 +47,8 @@ public class WhitesnakeModel extends HumanoidStandModel<WhitesnakeEntity> {
                 }
         };
     }
-
     @Override
-    protected void initActionPoses() {
+    protected void initActionPoses(){
         // TODO: disc throw
         ModelPose<WhitesnakeEntity> disc_throw1 = new ModelPose<>(new RotationAngle[]{
                 RotationAngle.fromDegrees(head, 0, 0, 0),
@@ -179,7 +178,6 @@ public class WhitesnakeModel extends HumanoidStandModel<WhitesnakeEntity> {
 
         super.initActionPoses();
     }
-
     @Override
     protected ModelPose<WhitesnakeEntity> initIdlePose() {
         return new ModelPose<>(new RotationAngle[]{
@@ -199,7 +197,6 @@ public class WhitesnakeModel extends HumanoidStandModel<WhitesnakeEntity> {
                 RotationAngle.fromDegrees(rightLowerLeg, 15, 0, 0)
         });
     }
-
     @Override
     protected ModelPose<WhitesnakeEntity> initIdlePose2Loop() {
         return new ModelPose<>(new RotationAngle[]{

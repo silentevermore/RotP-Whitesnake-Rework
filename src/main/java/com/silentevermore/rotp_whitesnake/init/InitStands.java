@@ -27,7 +27,7 @@ public class InitStands {
     public static final DeferredRegister<StandType<?>> STANDS = DeferredRegister.create(
             (Class<StandType<?>>) ((Class<?>) StandType.class), RotpWhitesnakeAddon.MOD_ID);
 
-    // ======================================== Whitesnake ========================================
+    // WHITESNAKE
     public static final StandPose REMOVE_DISC = new StandPose("WHITESNAKE_REMOVE_STAND_DISC");
 
     public static final RegistryObject<StandEntityAction> WHITESNAKE_PUNCH = ACTIONS.register("whitesnake_punch",
@@ -85,6 +85,12 @@ public class InitStands {
                     .holdToFire(15, false)
                     .partsRequired(StandPart.ARMS)));
 
+    public static final RegistryObject<WhitesnakeDisguise> DISGUISE = ACTIONS.register("disguise",
+            () -> new WhitesnakeDisguise(new WhitesnakeDisguise.Builder()
+                    .resolveLevelToUnlock(3)
+                    .holdToFire(5, false)
+                    .partsRequired(StandPart.ARMS)));
+
     public static final RegistryObject<WhitesnakeRemovingMemoryDisk> REMOVING_THE_MEMORY_DISK = ACTIONS.register("removing_the_memory_disk",
             () -> new WhitesnakeRemovingMemoryDisk(new WhitesnakeRemovingMemoryDisk.Builder()
                     .standPose(REMOVE_DISC)
@@ -122,13 +128,14 @@ public class InitStands {
                                     WHITESNAKE_BLOCK.get(),
                                     REMOVING_THE_MEMORY_DISK.get(),
                                     WHITESNAKE_REMOVE_STAND_DISC.get(),
+                                    DISGUISE.get(),
                                     BLINDNESS.get(),
                                     MELT_YOUR_HEART.get()
                             )
                             .defaultStats(StandStats.class, new StandStats.Builder()
                                     .power(14)
                                     .speed(14)
-                                    .range(10, 20)
+                                    .range(20, 20)
                                     .durability(16)
                                     .precision(14)
                                     .randomWeight(1.5)

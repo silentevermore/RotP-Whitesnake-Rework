@@ -13,6 +13,9 @@
   "action.rotp_whitesnake.melt_your_heart": "Melt Your Heart",
   "action.rotp_whitesnake.blindness": "Lose Sight",
   "action.rotp_whitesnake.blindness_disable": "Restore Sight",
+  "action.rotp_whitesnake.disguise": "Choose a Disguise",
+  "action.rotp_whitesnake.disguise_as": "Disguise as a \"%s\"",
+  "action.rotp_whitesnake.disguise_disable": "Return normal form",
   "action.rotp_whitesnake.removing_the_memory_disk": "Eject/Insert Memory Disc",
   "action.rotp_whitesnake.whitesnake_throw_disc": "Throw Disc",
 

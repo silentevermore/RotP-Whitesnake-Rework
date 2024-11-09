@@ -54,6 +54,20 @@ public class MemoryDiscItem extends Item{
         return (temp_count>0);
     }
 
+    public static CompoundNBT getOrCreateTargetNBT(ItemStack stack){
+        final CompoundNBT disc_nbt=stack.getOrCreateTagElement(PLAYER_DATA_KEY);
+        disc_nbt.putString("PLAYER_ID","");
+        disc_nbt.putString("PLAYER","");
+        return disc_nbt;
+    }
+
+    public static CompoundNBT getOrCreateTargetNBT(ItemStack stack, CompoundNBT target_nbt){
+        final CompoundNBT disc_nbt=stack.getOrCreateTagElement(PLAYER_DATA_KEY);
+        disc_nbt.putString("PLAYER_ID",target_nbt.getString("PLAYER_ID"));
+        disc_nbt.putString("PLAYER",target_nbt.getString("PLAYER"));
+        return disc_nbt;
+    }
+
     public static CompoundNBT getOrCreateTargetNBT(ItemStack stack, LivingEntity target){
         final CompoundNBT disc_nbt=stack.getOrCreateTagElement(PLAYER_DATA_KEY);
         disc_nbt.putString("PLAYER_ID",StandUtil.getStandUser(target).getUUID().toString());
@@ -67,6 +81,16 @@ public class MemoryDiscItem extends Item{
 
     public static String getTargetId(ItemStack stack, LivingEntity target){
         return getOrCreateTargetNBT(stack,target).getString("PLAYER_ID");
+    }
+
+    public static ItemStack withTargetNbt(ItemStack stack){
+        getOrCreateTargetNBT(stack);
+        return stack;
+    }
+
+    public static ItemStack withTargetNbt(ItemStack stack, CompoundNBT target_nbt){
+        getOrCreateTargetNBT(stack,target_nbt);
+        return stack;
     }
 
     public static ItemStack withTargetNbt(ItemStack stack, LivingEntity target){

@@ -20,6 +20,5 @@ public class ClientInit {
                 InitStands.WHITESNAKE.getEntityType(), WhitesnakeRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(InitEntities.WS_DISC.get(), DiscRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(InitEntities.WS_MHPROJ.get(), MeltHeartProjectileRenderer::new);
-
     }
 }
