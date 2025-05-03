@@ -35,6 +35,7 @@ public class WhitesnakeRenderer extends StandEntityRenderer<WhitesnakeEntity, Wh
         super(renderManager,
                 StandModelRegistry.registerModel(new ResourceLocation(RotpWhitesnakeAddon.MOD_ID, "whitesnake"), WhitesnakeModel::new),
                 new ResourceLocation(RotpWhitesnakeAddon.MOD_ID, "textures/entity/stand/whitesnake.png"), 0);
+        addLayer(new GlintLayer<>(this, this.getModel(), new ResourceLocation(RotpWhitesnakeAddon.MOD_ID, "textures/entity/stand/whitesnake.png")));
     }
     //methods
     public static int getOverlayCoordsForEntity(LivingEntity entity, float p_229117_1_) {
