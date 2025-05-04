@@ -10,7 +10,10 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class InitEntities {
+import java.util.LinkedList;
+
+public class InitEntities{
+    //constants
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, RotpWhitesnakeAddon.MOD_ID);
 
     public static final RegistryObject<EntityType<DiscProjectile>> WS_DISC = ENTITIES.register("disc",

@@ -43,13 +43,13 @@ public class InitStands {
     public static final RegistryObject<StandEntityHeavyAttack> WHITESNAKE_COMBO_PUNCH = ACTIONS.register("whitesnake_combo_punch",
             () -> new StandEntityHeavyAttack(new StandEntityHeavyAttack.Builder()
                     .punchSound(InitSounds.WHITESNAKE_PUNCH_HEAVY)
-                    .shout(InitSounds.WHITESNAKE_PUNCH_COMBO)
+                    .standSound(StandEntityAction.Phase.WINDUP, InitSounds.WHITESNAKE_PUNCH_COMBO)
                     .partsRequired(StandPart.ARMS)));
 
     public static final RegistryObject<StandEntityHeavyAttack> WHITESNAKE_HEAVY_PUNCH = ACTIONS.register("whitesnake_heavy_punch",
             () -> new StandEntityHeavyAttack(new StandEntityHeavyAttack.Builder()
                     .punchSound(InitSounds.WHITESNAKE_PUNCH_HEAVY)
-                    .shout(InitSounds.WHITESNAKE_PUNCH_COMBO)
+                    .standSound(StandEntityAction.Phase.WINDUP, InitSounds.WHITESNAKE_PUNCH_COMBO)
                     .partsRequired(StandPart.ARMS)
                     .setFinisherVariation(WHITESNAKE_COMBO_PUNCH)
                     .shiftVariationOf(WHITESNAKE_PUNCH).shiftVariationOf(WHITESNAKE_BARRAGE)));
@@ -82,22 +82,21 @@ public class InitStands {
                     .holdType()
                     .staminaCost(50)
                     .resolveLevelToUnlock(3)
-                    .holdToFire(15, false)
+                    .holdToFire(5, false)
                     .partsRequired(StandPart.ARMS)));
 
     public static final RegistryObject<WhitesnakeDisguise> DISGUISE = ACTIONS.register("disguise",
             () -> new WhitesnakeDisguise(new WhitesnakeDisguise.Builder()
                     .resolveLevelToUnlock(3)
-                    .holdToFire(5, false)
                     .partsRequired(StandPart.ARMS)));
 
     public static final RegistryObject<WhitesnakeRemovingMemoryDisk> REMOVING_THE_MEMORY_DISK = ACTIONS.register("removing_the_memory_disk",
             () -> new WhitesnakeRemovingMemoryDisk(new WhitesnakeRemovingMemoryDisk.Builder()
                     .standPose(REMOVE_DISC)
-                    .standSound(StandEntityAction.Phase.PERFORM,InitSounds.WHITESNAKE_REMOVE_DISC)
+                    .standSound(StandEntityAction.Phase.PERFORM, InitSounds.WHITESNAKE_REMOVE_DISC)
+                    .standSound(StandEntityAction.Phase.WINDUP, InitSounds.PUCCI_REMOVE_DISK)
                     .staminaCost(200)
                     .resolveLevelToUnlock(0)
-                    .shout(InitSounds.PUCCI_REMOVE_DISK)
                     .holdToFire(30, false)
                     .partsRequired(StandPart.ARMS)));
 
@@ -133,10 +132,10 @@ public class InitStands {
                                     MELT_YOUR_HEART.get()
                             )
                             .defaultStats(StandStats.class, new StandStats.Builder()
-                                    .power(14)
-                                    .speed(14)
+                                    .power(10)
+                                    .speed(12)
                                     .range(20, 20)
-                                    .durability(16)
+                                    .durability(14)
                                     .precision(14)
                                     .randomWeight(1.5)
                             )

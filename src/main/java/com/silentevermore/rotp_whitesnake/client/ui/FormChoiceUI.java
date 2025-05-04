@@ -3,18 +3,27 @@ package com.silentevermore.rotp_whitesnake.client.ui;
 import com.github.standobyte.jojo.action.ActionTarget;
 import com.github.standobyte.jojo.client.ClientUtil;
 import com.github.standobyte.jojo.client.InputHandler;
+import com.github.standobyte.jojo.client.ui.screen.widgets.HeightScaledSlider;
+import com.github.standobyte.jojo.client.ui.screen.widgets.ImageVanillaButton;
+import com.github.standobyte.jojo.entity.stand.StandEntity;
+import com.github.standobyte.jojo.power.impl.stand.IStandPower;
+import com.github.standobyte.jojo.power.impl.stand.StandUtil;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.silentevermore.rotp_whitesnake.RotpWhitesnakeAddon;
 import com.silentevermore.rotp_whitesnake.entity.WhitesnakeEntity;
 import com.silentevermore.rotp_whitesnake.init.InitEntities;
 import com.silentevermore.rotp_whitesnake.init.InitStands;
+import com.silentevermore.rotp_whitesnake.network.PacketHandler;
+import com.silentevermore.rotp_whitesnake.network.packets.server.WhitesnakeRenderPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.chat.NarratorChatListener;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.Widget;
+import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
@@ -24,96 +33,64 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @OnlyIn(Dist.CLIENT)
 public class FormChoiceUI extends Screen{
+    //blit(matrix_stack, pos_x, pos_y, offset_x, offset_y, width, height)
     //constants
-    private final ResourceLocation MENU_BG=new ResourceLocation("/textures/gui/fmcui_bg.png");
-    private Optional<Entity> currentlyHovered=Optional.empty();
-    private final ArrayList<Entity> totalEntities=new ArrayList<>();
-    private final ArrayList<FormChoiceUI.SelectorWidget> slots=new ArrayList<>();
+    private final int BUTTON_WIDTH=24;
+    private final int BUTTON_HEIGHT=24;
+    public static final ResourceLocation FMCUI_BG_LOCATION = new ResourceLocation(RotpWhitesnakeAddon.MOD_ID, "textures/gui/fmcui_bg.png");
+    //static methods
+    public static void openUI(Minecraft mc){
+        if (mc!=null && mc.screen==null){
+            mc.setScreen(new FormChoiceUI(mc));
+        }
+    }
     //builder
     public FormChoiceUI(Minecraft mc){
         super(NarratorChatListener.NO_TITLE);
     }
-    //methods
+    //overriden methods
     @Override
-    public boolean keyPressed(int pKeyCode, int pScanCode, int pModifiers){
-        final InputHandler.MouseButton button = InputHandler.MouseButton.getButtonFromId(pKeyCode);
-        if (button==InputHandler.MouseButton.LEFT){
-            return true;
-        }
-        return super.keyPressed(pKeyCode, pScanCode, pModifiers);
+    public boolean isPauseScreen(){
+        return true;
     }
     @Override
     protected void init(){
         super.init();
-    }
-    @Override
-    public void render(MatrixStack matrixStack, int x, int y, float var1){
-        final Minecraft minecraft=this.getMinecraft();
-        if (minecraft!=null){
-            matrixStack.pushPose();
-            RenderSystem.enableBlend();
-            minecraft.getTextureManager().bind(MENU_BG);
-            matrixStack.popPose();
-            super.render(matrixStack, x, y, var1);
-            this.currentlyHovered.ifPresent(
-                    (something)->drawCenteredString(matrixStack, this.font, something.getDisplayName(), this.width/2, this.height/2 - 30 - 20, -1));
-        }
-        for (FormChoiceUI.SelectorWidget selectorWidget : this.slots){
-            selectorWidget.render(matrixStack, x, y, var1);
-        }
-    }
-    @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int buttonId){
-        if (super.mouseClicked(mouseX, mouseY, buttonId))
-            return true;
-        final InputHandler.MouseButton button=InputHandler.MouseButton.getButtonFromId(buttonId);
-        if (button== InputHandler.MouseButton.LEFT)
-            switchToHovered(this.getMinecraft(), this.currentlyHovered);
-        return false;
-    }
-    private void switchToHovered(Minecraft minecraft, Optional<Entity> hovered){
-        hovered.ifPresent(
-                (entity)->{
-                   final RayTraceResult target=InputHandler.getInstance().mouseTarget;
-                   final ActionTarget actionTarget=ActionTarget.fromRayTraceResult(target);
-                   final PlayerEntity player=ClientUtil.getClientPlayer();
-                   minecraft.setScreen(null);
+        final Minecraft mc=Minecraft.getInstance();
+        final LinkedList<EntityType<?>> tempEntityList=RotpWhitesnakeAddon.getEntitiesForDisguise();
+        //buttons
+        AtomicInteger i=new AtomicInteger(60);
+        AtomicInteger j=new AtomicInteger(48);
+        AtomicInteger btn_count=new AtomicInteger(0);
+        tempEntityList.forEach(entityType->{
+            i.set(i.get() + BUTTON_WIDTH + 1);
+            if (i.get()>=BUTTON_WIDTH*15 + 1){
+                i.set(60);
+                j.set(j.get() + BUTTON_HEIGHT + 1);
+            }
+            FormButton btn=new FormButton(
+                    entityType, i.get(), j.get(), BUTTON_WIDTH, BUTTON_HEIGHT,button -> {
+                //should work, i guess..
+                PlayerEntity clientPlayer=ClientUtil.getClientPlayer();
+                IStandPower.getStandPowerOptional(clientPlayer).ifPresent(stand_power->{
+                    if (stand_power.getStandManifestation() instanceof WhitesnakeEntity){
+                        WhitesnakeEntity wt=(WhitesnakeEntity) stand_power.getStandManifestation();
+                        PacketHandler.sendToServer(new WhitesnakeRenderPacket(entityType.getRegistryName(), wt.getId()));
+                    }
                 });
+                mc.setScreen(null);
+            });
+            this.addButton(btn);
+        });
     }
-    //classes
-    public class SelectorWidget extends Widget{
-        private Optional<Entity> selected=Optional.empty();
-        public SelectorWidget(int x, int y){
-            super(x, y, 25, 25, new TranslationTextComponent(""));
-        }
-        public void setSelected(Entity selected){
-            this.selected=Optional.of(selected);
-        }
-        public boolean selectionEquals(Entity target){
-            return this.selected.map(
-                    (entity)->{return target.equals(entity);}).orElse(false);
-        }
-        public void renderButton(MatrixStack matrixStack, int x, int y, float var1){
-            final Minecraft minecraft=Minecraft.getInstance();
-            this.drawSlot(matrixStack, minecraft.getTextureManager());
-        }
-        private void drawSlot(MatrixStack matrixStack, TextureManager textureManager){
-            textureManager.bind(MENU_BG);
-            matrixStack.pushPose();
-            matrixStack.translate(this.x, this.y, 0d);
-            blit(matrixStack, 0, 0, 0f, 0f, 25, 25, 128, 128);
-            matrixStack.popPose();
-        }
-        private void drawSelection(MatrixStack matrixStack, TextureManager textureManager){
-            textureManager.bind(MENU_BG);
-            matrixStack.pushPose();
-            matrixStack.translate(this.x, this.y, 0d);
-            blit(matrixStack, 0, 0, 100f, 0f, 25, 25, 128, 128);
-            matrixStack.popPose();
-        }
+    @Override
+    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks){
+        super.render(matrixStack, mouseX, mouseY, partialTicks);
     }
 }

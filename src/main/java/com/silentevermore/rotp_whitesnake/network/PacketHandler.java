@@ -25,13 +25,13 @@ public class PacketHandler{
     private static int packetIndex=0;
 
     public static void init(){
-        serverChannel= NetworkRegistry.ChannelBuilder
+        serverChannel=NetworkRegistry.ChannelBuilder
                 .named(new ResourceLocation(MOD_ID, "server_channel"))
                 .clientAcceptedVersions(PROTOCOL_VERSION::equals)
                 .serverAcceptedVersions(PROTOCOL_VERSION::equals)
                 .networkProtocolVersion(()->PROTOCOL_VERSION)
                 .simpleChannel();
-        clientChannel= NetworkRegistry.ChannelBuilder
+        clientChannel=NetworkRegistry.ChannelBuilder
                 .named(new ResourceLocation(MOD_ID, "client_channel"))
                 .clientAcceptedVersions(PROTOCOL_VERSION::equals)
                 .serverAcceptedVersions(PROTOCOL_VERSION::equals)
@@ -39,6 +39,7 @@ public class PacketHandler{
                 .simpleChannel();
         packetIndex=0;
         registerMessage(serverChannel, new WhitesnakeRenderPacket.Handler(), Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+        registerMessage(clientChannel, new WhitesnakeRenderPacket.Handler(), Optional.of(NetworkDirection.PLAY_TO_SERVER));
     }
     private static <MSG> void registerMessage(SimpleChannel channel, IModPacketHandler<MSG> handler, Optional<NetworkDirection> networkDirection){
         if (packetIndex>127) throw new IllegalStateException("Too many packets registered on a single channel (>127)");

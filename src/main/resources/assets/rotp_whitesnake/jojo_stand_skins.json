@@ -1,6 +1,10 @@
 {
   "skins": {
-    "rotp_whitesnake:skinA": {
+    "rotp_whitesnake:skin_a": {
+      "stand_type": "rotp_whitesnake:whitesnake",
+      "color": "0xD5D5D5"
+    },
+    "rotp_whitesnake:skin_b": {
       "stand_type": "rotp_whitesnake:whitesnake",
       "color": "0xD5D5D5"
     }
