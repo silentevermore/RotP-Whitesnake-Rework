@@ -96,8 +96,8 @@ public class MeltHeartBlock extends Block {
         return true;
     }
 
-    public BlockState updateShape(BlockState p_196271_1_, Direction p_196271_2_, BlockState p_196271_3_, IWorld p_196271_4_, BlockPos p_196271_5_, BlockPos p_196271_6_) {
-        return !p_196271_1_.canSurvive(p_196271_4_, p_196271_5_) ? Blocks.AIR.defaultBlockState() : super.updateShape(p_196271_1_, p_196271_2_, p_196271_3_, p_196271_4_, p_196271_5_, p_196271_6_);
+    public BlockState updateShape(BlockState state, Direction dir, BlockState state2, IWorld abstWorld, BlockPos bPos, BlockPos bPos2) {
+        return !state.canSurvive(abstWorld, bPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, dir, state2, abstWorld, bPos, bPos2);
     }
 
     @Override
@@ -114,27 +114,18 @@ public class MeltHeartBlock extends Block {
         }
     }
 
-    public boolean canBeReplaced(BlockState p_196253_1_, BlockItemUseContext p_196253_2_) {
-        int i = p_196253_1_.getValue(LAYERS);
-        if (p_196253_2_.getItemInHand().getItem() == this.asItem() && i < 8) {
-            if (p_196253_2_.replacingClickedOnBlock()) {
-                return p_196253_2_.getClickedFace() == Direction.UP;
-            } else {
-                return true;
-            }
-        } else {
-            return i == 1;
-        }
+    public boolean canBeReplaced(BlockState state, BlockItemUseContext ctx){
+        return false;
     }
 
     @Nullable
-    public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
-        BlockState blockstate = p_196258_1_.getLevel().getBlockState(p_196258_1_.getClickedPos());
+    public BlockState getStateForPlacement(BlockItemUseContext ctx){
+        BlockState blockstate = ctx.getLevel().getBlockState(ctx.getClickedPos());
         if (blockstate.is(this)) {
             int i = blockstate.getValue(LAYERS);
             return blockstate.setValue(LAYERS, Integer.valueOf(Math.min(8, i + 1)));
         } else {
-            return super.getStateForPlacement(p_196258_1_);
+            return super.getStateForPlacement(ctx);
         }
     }
 

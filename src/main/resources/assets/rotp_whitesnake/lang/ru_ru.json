@@ -15,10 +15,13 @@
   "action.rotp_whitesnake.blindness_disable": "Восстановить зрение",
   "action.rotp_whitesnake.removing_the_memory_disk": "Извлечь/Вставить Диск памяти",
   "action.rotp_whitesnake.whitesnake_throw_disc": "Метнуть диск",
+  "action.rotp_whitesnake.disguise": "Выбрать маскировку",
+  "action.rotp_whitesnake.disguise_disable": "Вернуть прежний облик",
 
   "rotp_whitesnake.subtitle.whitesnake_name": "\"Whitesnake\"",
   "rotp_whitesnake.memory_disc.current_player": "Содержит память %s",
   "rotp_whitesnake.memory_disc.no_current_player": "Диск не содержит память",
   "item.rotp_whitesnake.memory_disc_item": "Диск Памяти",
-  "rotp_whitesnake.stand_skins.skinA": "Whitesnake Old"
+  "rotp_whitesnake.stand_skins.skin_a": "Whitesnake Old 1",
+  "rotp_whitesnake.stand_skins.skin_b": "Whitesnake Old 2"
 }

@@ -47,8 +47,9 @@ public class FormButton extends Button{
             BlitFloat.blitFloat(matrixStack, x + 4, y + 4, 0.0F, 0.0F, 16f, 16f, 16.0F, 16.0F);
         }
         if (this.isHovered()){
+            minecraft.getTextureManager().bind(FMCUI_BG_LOCATION);
             blit(matrixStack, this.x, this.y,24, 0, this.width, this.height, 128, 128);
-            drawCenteredString(matrixStack, fontrenderer, this.getMessage().copy().withStyle(formatting), this.x + this.width/2, this.y + this.height/4, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
+            drawCenteredString(matrixStack, fontrenderer, this.getMessage().copy().withStyle(formatting), this.x + this.width/2, this.y + this.height/4, j);
         }
     }
 }

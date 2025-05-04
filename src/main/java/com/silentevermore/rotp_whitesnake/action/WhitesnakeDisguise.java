@@ -13,6 +13,9 @@ import com.silentevermore.rotp_whitesnake.network.packets.server.WhitesnakeRende
 import com.silentevermore.rotp_whitesnake.util.ClientUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 public class WhitesnakeDisguise extends StandEntityAction{
@@ -28,5 +31,13 @@ public class WhitesnakeDisguise extends StandEntityAction{
         }else{
             if (world.isClientSide()) FormChoiceUI.openUI(Minecraft.getInstance());
         }
+    }
+
+    @Override
+    public IFormattableTextComponent getTranslatedName(IStandPower power, String key) {
+        if (power!=null && power.getStandManifestation() instanceof WhitesnakeEntity && ((WhitesnakeEntity)power.getStandManifestation()).getEntityForDisguise().isPresent()){
+            return new TranslationTextComponent("action.rotp_whitesnake.disguise_disable");
+        }
+        return new TranslationTextComponent(key);
     }
 }
