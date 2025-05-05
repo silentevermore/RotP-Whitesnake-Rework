@@ -20,10 +20,14 @@
   "action.rotp_whitesnake.whitesnake_throw_disc": "Throw Disc",
 
   "rotp_whitesnake.subtitle.whitesnake_name": "\"Whitesnake\"",
+
   "rotp_whitesnake.memory_disc.player_name": "%s",
   "rotp_whitesnake.memory_disc.current_player": "Contains memory of: %s",
   "rotp_whitesnake.memory_disc.no_current_player": "Disk doesn't contain any memory",
   "item.rotp_whitesnake.memory_disc_item": "Memory Disc",
+
   "rotp_whitesnake.stand_skins.skin_a": "Whitesnake Old 1",
-  "rotp_whitesnake.stand_skins.skin_b": "Whitesnake Old 2"
+  "rotp_whitesnake.stand_skins.skin_b": "Whitesnake Old 2",
+
+  "rotp_whitesnake.glint_config": "Show glint effect"
 }

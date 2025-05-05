@@ -1,5 +1,6 @@
 package com.silentevermore.rotp_whitesnake;
 
+import com.github.standobyte.jojo.JojoModConfig;
 import com.github.standobyte.jojo.util.ForgeBusEventSubscriber;
 import com.silentevermore.rotp_whitesnake.init.*;
 import com.silentevermore.rotp_whitesnake.network.PacketHandler;
@@ -7,7 +8,9 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -25,8 +28,10 @@ public class RotpWhitesnakeAddon{
     public static final String MOD_ID = "rotp_whitesnake";
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public RotpWhitesnakeAddon() {
+    public RotpWhitesnakeAddon(){
         final IEventBus modEventBus=FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WhitesnakeConfig.commonSpec);
 
         InitEntities.ENTITIES.register(modEventBus);
         InitSounds.SOUNDS.register(modEventBus);

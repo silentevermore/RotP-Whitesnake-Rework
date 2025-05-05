@@ -17,6 +17,7 @@ import com.silentevermore.rotp_whitesnake.init.InitStands;
 import com.silentevermore.rotp_whitesnake.network.PacketHandler;
 import com.silentevermore.rotp_whitesnake.network.packets.server.WhitesnakeRenderPacket;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.chat.NarratorChatListener;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.Widget;
@@ -41,6 +42,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class FormChoiceUI extends Screen{
     //blit(matrix_stack, pos_x, pos_y, offset_x, offset_y, width, height)
     //constants
+    private Optional<FormButton> HOVERED_BUTTON=Optional.empty();
     private final int BUTTON_WIDTH=24;
     private final int BUTTON_HEIGHT=24;
     public static final ResourceLocation FMCUI_BG_LOCATION = new ResourceLocation(RotpWhitesnakeAddon.MOD_ID, "textures/gui/fmcui_bg.png");
@@ -53,6 +55,13 @@ public class FormChoiceUI extends Screen{
     //builder
     public FormChoiceUI(Minecraft mc){
         super(NarratorChatListener.NO_TITLE);
+    }
+    //methods
+    public Optional<FormButton> getHoveredButton(){
+        return HOVERED_BUTTON;
+    }
+    public void setHoveredButton(FormButton btn){
+        HOVERED_BUTTON=Optional.ofNullable(btn);
     }
     //overriden methods
     @Override
@@ -75,7 +84,7 @@ public class FormChoiceUI extends Screen{
                 j.set(j.get() + BUTTON_HEIGHT + 1);
             }
             FormButton btn=new FormButton(
-                    entityType, i.get(), j.get(), BUTTON_WIDTH, BUTTON_HEIGHT,button -> {
+                    entityType, this, i.get(), j.get(), BUTTON_WIDTH, BUTTON_HEIGHT,button -> {
                 //should work, i guess..
                 PlayerEntity clientPlayer=ClientUtil.getClientPlayer();
                 IStandPower.getStandPowerOptional(clientPlayer).ifPresent(stand_power->{
@@ -91,6 +100,22 @@ public class FormChoiceUI extends Screen{
     }
     @Override
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks){
+        Minecraft minecraft = Minecraft.getInstance();
+        FontRenderer font = minecraft.font;
         super.render(matrixStack, mouseX, mouseY, partialTicks);
+        //render the tip if button is hovered
+        getHoveredButton().ifPresent(btn->{
+            RenderSystem.disableBlend();
+            RenderSystem.disableDepthTest();
+            TextFormatting formatting=TextFormatting.BOLD;
+            ITextComponent msg=btn.getMessage();
+            ITextComponent firstLetter=StringTextComponent.EMPTY;
+            String msg_name=msg.getString();
+            //define position of text
+            int textPosX=btn.x + btn.getWidth()/2;
+            int textPosY=btn.y + btn.getHeight()/3;
+            drawCenteredString(matrixStack, font, msg.copy().withStyle(formatting), textPosX, textPosY, 16777215);
+            //font.drawShadow(matrixStack, msg.copy().withStyle(formatting), textPosX, textPosY, 16777215);
+        });
     }
 }
