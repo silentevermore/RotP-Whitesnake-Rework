@@ -2,7 +2,8 @@ package com.silentevermore.rotp_whitesnake.client.ui;
 
 import com.github.standobyte.jojo.JojoMod;
 import com.github.standobyte.jojo.client.ui.BlitFloat;
-import com.github.standobyte.jojo.util.mc.EntityTypeToInstance;
+import com.github.standobyte.jojo.util.mc.entitysubtype.EntitySubtype;
+import com.github.standobyte.jojo.util.mc.entitysubtype.EntityTypeToInstance;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import java.util.HashMap;
@@ -88,7 +89,7 @@ public class EntityTypeIcon{
     private static <T extends Entity> ResourceLocation getEntityTexture(EntityType<T> entityType) {
         Minecraft mc = Minecraft.getInstance();
         EntityRenderer<? super T> renderer = (EntityRenderer)mc.getEntityRenderDispatcher().renderers.get(entityType);
-        T entity = EntityTypeToInstance.getEntityInstance(entityType, mc.level);
+        T entity = (T) EntityTypeToInstance.getEntityInstance(EntitySubtype.base(entityType), mc.level);
 
         try {
             return renderer.getTextureLocation(entity);

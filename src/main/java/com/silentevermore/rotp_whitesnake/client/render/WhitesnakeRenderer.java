@@ -5,7 +5,8 @@ import com.github.standobyte.jojo.client.render.entity.model.stand.StandModelReg
 import com.github.standobyte.jojo.client.render.entity.renderer.stand.StandEntityRenderer;
 import com.github.standobyte.jojo.entity.stand.StandEntity;
 import com.github.standobyte.jojo.power.impl.stand.StandUtil;
-import com.github.standobyte.jojo.util.mc.EntityTypeToInstance;
+import com.github.standobyte.jojo.util.mc.entitysubtype.EntitySubtype;
+import com.github.standobyte.jojo.util.mc.entitysubtype.EntityTypeToInstance;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.silentevermore.rotp_whitesnake.RotpWhitesnakeAddon;
@@ -55,7 +56,7 @@ public class WhitesnakeRenderer extends StandEntityRenderer<WhitesnakeEntity, Wh
             EntityType<? extends LivingEntity> entityType = (EntityType<? extends LivingEntity>) whitesnake.getEntityForDisguise().get();
             LivingRenderer<LivingEntity, EntityModel<LivingEntity>> renderer = (LivingRenderer<LivingEntity, EntityModel<LivingEntity>>) mc.getEntityRenderDispatcher().renderers.get(entityType);
             //BEWARE
-            final LivingEntity living=EntityTypeToInstance.getEntityInstance(entityType, mc.level);
+            final LivingEntity living = (LivingEntity) EntityTypeToInstance.getEntityInstance(EntitySubtype.base(entityType), mc.level);
             final EntityModel<LivingEntity> model = renderer.getModel();
             final ResourceLocation texture = renderer.getTextureLocation(living);
 
